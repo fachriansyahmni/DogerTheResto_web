@@ -20,3 +20,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// for admin
+Route::group(['prefix' => 'admin'], function () {
+});
+
+// for cashier
+Route::group(['prefix' => 'cashier'], function () {
+});
+
+// for waiter
+Route::group(['prefix' => 'w'], function () {
+});
