@@ -61,6 +61,18 @@
                             </div>
                         </div>
 
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <label class="input-group-text" for="inputGroupSelect01">Role</label>
+                            </div>
+                            <select class="custom-select" name="role" id="inputGroupSelect01">
+                              <option value="pelayan">Pelayan</option>
+                              <option value="kasir">Kasir</option>
+                              <option value="koki">Koki</option>
+                              <option value="owner">Owner</option>
+                            </select>
+                          </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

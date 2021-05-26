@@ -38,19 +38,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    // public function username()
-    // {
-    //     return 'username';
-    // }
+
+    public function username()
+    {
+        return 'username';
+    }
 
     protected function authenticated(Request $request, $user)
     {
-        dd($request);
-        // if ($user->hasRole('admin')) {
-        //     return redirect()->route('dashboard');
-        // }
+        // dd($user);
+        if ($user->hasRole('admin')) {
+            return redirect()->route('dashboard');
+        }
 
-        // return redirect()->route('home');
+        return redirect()->route('home');
     }
 
 }
