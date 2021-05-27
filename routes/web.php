@@ -26,13 +26,17 @@ Route::middleware('role:admin')->get('/dashboard', function () {
 
 
 // for admin
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
 });
 
 // for cashier
-Route::group(['prefix' => 'cashier'], function () {
+Route::group(['prefix' => 'cashier', 'middleware' => 'role:cashier'], function () {
 });
 
 // for waiter
-Route::group(['prefix' => 'w'], function () {
+Route::group(['prefix' => 'waiter', 'middleware' => 'role:waiter'], function () {
+});
+
+// for koki
+Route::group(['prefix' => 'chef', 'middleware' => 'role:chef'], function () {
 });
