@@ -20,23 +20,40 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('role:pelayan')->get('/home', 'HomeController@index')->name('home');
-Route::middleware('role:admin')->get('/dashboard', function () {
-    return 'Dashboard';
-})->name('dashboard');
+Route::middleware('role:admin')->get('/dashboard', 'HomeController@index')->name('dashboard');
 
+Route::get('/test',function ()
+{
+    return view('/deksapp/dashboard');
+});
 
 // for admin
-Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-'], function () {
+    Route::get('/','AdminController@index')->name('index'); 
+    Route::get('manage-user','AdminController@manageUser')->name('manage-user'); 
 });
 
 // for cashier
 Route::group(['prefix' => 'cashier', 'middleware' => 'role:cashier'], function () {
+    
 });
 
 // for waiter
 Route::group(['prefix' => 'waiter', 'middleware' => 'role:waiter'], function () {
+    
 });
 
 // for koki
 Route::group(['prefix' => 'chef', 'middleware' => 'role:chef'], function () {
+
 });
+
+Route::group(['middleware' => 'auth'],function (){
+    // Table
+    Route::get('manage-table','TableController@manageTable')->name('manage.table');
+
+    // Menu
+    Route::get('manage-menu','MenuController@manageMenu')->name('manage.menu');
+    
+});
+
