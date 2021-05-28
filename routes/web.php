@@ -24,18 +24,20 @@ Route::middleware('role:admin')->get('/dashboard', 'HomeController@index')->name
 
 Route::get('/test',function ()
 {
-    return view('/deksapp/dashboard');
+    return view('Berhasil');
 });
 
 // for admin
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-'], function () {
     Route::get('/','AdminController@index')->name('index'); 
+    Route::get('/registration','AdminController@registration')->name('registration');
+    Route::post('/registration','AdminController@save')->name('save');
     Route::get('manage-user','AdminController@manageUser')->name('manage-user'); 
 });
 
 // for cashier
 Route::group(['prefix' => 'cashier', 'middleware' => 'role:cashier'], function () {
-    
+
 });
 
 // for waiter

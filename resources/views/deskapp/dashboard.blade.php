@@ -57,10 +57,12 @@
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
-		<div class="pd-ltr-20">
+		<div class="pd-ltr-20 xs-pd-20-10">
 			@yield('main-content')
 		</div>
 	</div>
+
+	
 	<!-- js -->
 	<script src="{{ asset('/vendor/deskapp/vendors/scripts/core.js')}}"></script>
 	<script src="{{ asset('/vendor/deskapp/vendors/scripts/script.min.js')}}"></script>
