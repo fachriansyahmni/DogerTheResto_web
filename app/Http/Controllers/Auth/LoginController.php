@@ -44,6 +44,11 @@ class LoginController extends Controller
         return 'username';
     }
 
+    public function showLoginForm()
+    {
+        return view('auth.login-deskapp');
+    }
+
     protected function authenticated(Request $request, $user)
     {
         // dd($user);
@@ -53,5 +58,4 @@ class LoginController extends Controller
 
         return redirect()->route('home');
     }
-
 }
