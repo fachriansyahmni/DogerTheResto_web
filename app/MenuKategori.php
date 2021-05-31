@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class MenuKategori extends Model
 {
-    //
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'nama_kategori', 'slug',
+    ];
 }

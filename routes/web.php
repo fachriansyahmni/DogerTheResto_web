@@ -22,8 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('role:admin')->get('/dashboard', 'HomeController@index')->name('dashboard');
 
-Route::get('/test',function ()
-{
+Route::get('/test', function () {
     return view('Berhasil');
 });
 
@@ -40,25 +39,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-
 
 // for cashier
 Route::group(['prefix' => 'cashier', 'middleware' => 'role:cashier'], function () {
-
 });
 
 // for waiter
 Route::group(['prefix' => 'waiter', 'middleware' => 'role:waiter'], function () {
-    
 });
 
 // for koki
 Route::group(['prefix' => 'chef', 'middleware' => 'role:chef'], function () {
-
 });
 
-Route::group(['middleware' => 'auth'],function (){
+Route::group(['middleware' => 'auth'], function () {
     // Table
-    Route::get('manage-table','TableController@manageTable')->name('manage.table');
+    Route::get('manage-table', 'TableController@manageTable')->name('manage.table');
 
     // Menu
-    Route::get('manage-menu','MenuController@manageMenu')->name('manage.menu');
-    
+    Route::get('manage-menu', 'MenuController@manageMenu')->name('manage.menu');
+    Route::post('store-new-menu', 'MenuController@storeMenu')->name('store.menu');
 });
-
