@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware('role:pelayan')->get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('role:admin')->get('/dashboard', 'HomeController@index')->name('dashboard');
 
 Route::get('/test',function ()
@@ -32,6 +32,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-
     Route::get('/','AdminController@index')->name('index'); 
     Route::get('/registration','AdminController@registration')->name('registration');
     Route::post('/registration','AdminController@save')->name('save');
+    Route::post('/registration/edit/{id}','AdminController@edit')->name('edit');
+    Route::post('/registration/reset/{id}','AdminController@reset')->name('reset');
+    Route::put('/registration/delete/{id}','AdminController@delete')->name('delete');
     Route::get('manage-user','AdminController@manageUser')->name('manage-user'); 
 });
 
