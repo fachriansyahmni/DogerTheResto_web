@@ -33,6 +33,9 @@
         .menu-item{
             padding: 5px;
         }
+        .main-container {
+            padding: 80px 20px 2px 20px;
+        }
     </style>
 	@stack('css')
 </head>
@@ -52,6 +55,12 @@
 
 	@include('deskapp.dash2.layouts.header')
 	
+    <div class="main-container">
+		<div class="pd-ltr-20 xs-pd-20-10">
+			@yield('main-content')
+		</div>
+	</div>
+
 	<!-- js -->
 	<script src="{{ asset('/vendor/deskapp/vendors/scripts/core.js')}}"></script>
 	<script src="{{ asset('/vendor/deskapp/vendors/scripts/script.min.js')}}"></script>
