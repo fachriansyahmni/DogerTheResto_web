@@ -39,10 +39,10 @@
             <div class="col-sm-12 col-md-10">
                 <select class="custom-select col-12" name="role">
                     <option selected="">Choose...</option>
-                    <option value="pelayan">Pelayan</option>
-                    <option value="kasir">Kasir</option>
-                    <option value="koki">Koki</option>
-                    <option value="owner">Owner</option>
+                    <option value=3>Pelayan</option>
+                    <option value=5>Kasir</option>
+                    <option value=4>Koki</option>
+                    <option value=6>Owner</option>
                 </select>
             </div>
         </div>
@@ -121,11 +121,35 @@
                                       <input class="form-control" type="text" name="email" placeholder="Email" value="{{ $user->email }}">
                                   </div>
                               </div>
+                              <?php
+                                if ($user->role == "pelayan" ) {
+                                    $user->role = 3;
+                                } else if ($user->role == "kasir") {
+                                    $user->role = 5;
+                                } else if ($user->role == "koki") {
+                                    $user->role = 4;
+                                } else if ($user->role == "owner") {
+                                    $user->role = 6;
+                                }
+                                
+                              ?>
                               <div class="form-group row">
                                 <label class="col-sm-12 col-md-2 col-form-label">Role</label>
                                 <div class="col-sm-12 col-md-10">
                                     <select class="custom-select col-12" name="role">
-                                        <option selected="{{ $user->role }}">{{ $user->role }}</option>
+                                        <option selected="{{ $user->role }}">
+                                            <?php
+                                                if ($user->role == 3) {
+                                                    echo "Pelayan";
+                                                } else if($user->role == 5) {
+                                                    echo "Kasir";
+                                                } else if($user->role == 4) {
+                                                    echo "Koki";
+                                                } else if($user->role == 6) {
+                                                    echo "owner";
+                                                }
+                                            ?>
+                                        </option>
                                         <option value=3>Pelayan</option>
                                         <option value=5>Kasir</option>
                                         <option value=4>Koki</option>
