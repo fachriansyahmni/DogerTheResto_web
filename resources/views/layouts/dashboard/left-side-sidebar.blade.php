@@ -174,12 +174,6 @@
                         <li><a href="third-party-plugins.html">Third Party Plugins</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="https://dropways.github.io/deskapp-free-single-page-website-template/" target="_blank" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-paper-plane1"></span>
-                        <span class="mtext">Landing Page <img src="vendors/images/coming-soon.png" alt="" width="25"></span>
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
