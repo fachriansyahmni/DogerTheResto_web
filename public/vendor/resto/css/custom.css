@@ -1,0 +1,41 @@
+.d-flex{
+    display: flex;
+}
+.d-flex.flex-column{
+    flex-direction: column;
+}
+
+.justify-content-around{
+    justify-content : space-around;
+}
+.tblPlace{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 150px;
+    text-align: center;
+}
+.tblPlace span{
+    font-weight: 700;
+    font-size: 50px;
+    color: black;
+}
+.ahowallmenu{
+   padding-top: 60px;
+    text-align: center;
+} 
+.ahowallmenu a{
+    border: 7px solid white;
+    padding: 16px 80px;
+    color: white;
+    font-size: 26px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.probootstrap-footer{
+    background-color: #E4E4E4;
+    color: #000000;
+}
+.probootstrap-footer h3{
+    color: #000000;
+}
