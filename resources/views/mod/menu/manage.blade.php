@@ -5,18 +5,71 @@
 @endpush
 
 @section('main-content')
-<div class="container pd-0">
-    <a href="#" data-toggle="modal" data-target="#addMenu">Tambah Menu</a>
     <a href="#" data-toggle="modal" data-target="#addMenuKategori">Tambah Menu Kategori</a>
-
-</div>
 <div class="container-fluid">
+	<div class="row">
+		<div class="col-xl-3 mb-30">
+			<div class="card-box height-100-p widget-style1">
+				<div class="d-flex flex-wrap align-items-center">
+					<div class="progress-data">
+						<div id="chart"></div>
+					</div>
+					<div class="widget-data">
+						<div class="h4 mb-0">{{count(App\Menu::where('visible',1)->get())}}</div>
+						<div class="weight-600 font-14">Total Menu</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 mb-30">
+			<div class="card-box height-100-p widget-style1">
+				<div class="d-flex flex-wrap align-items-center">
+					<div class="progress-data">
+						<div id="chart"></div>
+					</div>
+					<div class="widget-data">
+						<div class="h4 mb-0">2020</div>
+						<div class="weight-600 font-14">Contact</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 mb-30">
+			<div class="card-box height-100-p widget-style1">
+				<div class="d-flex flex-wrap align-items-center">
+					<div class="progress-data">
+						<div id="chart"></div>
+					</div>
+					<div class="widget-data">
+						<div class="h4 mb-0">2020</div>
+						<div class="weight-600 font-14">Contact</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 mb-30">
+			<div class="card-box height-100-p widget-style1">
+				<div class="d-flex flex-wrap align-items-center">
+					<div class="progress-data">
+						<div id="chart"></div>
+					</div>
+					<div class="widget-data">
+						<div class="h4 mb-0">2020</div>
+						<div class="weight-600 font-14">Contact</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="card">
 		<div class="card-body">
 			<div class="clearfix">
 				<div class="pull-left">
 					<h4 class="text-blue h4">Employee Registration</h4>
 					<p class="mb-30">All bootstrap element classies</p>
+				</div>
+				<div class="pull-right">
+					<a href="#" data-toggle="modal" data-target="#addMenu">Tambah Menu</a>
 				</div>
 			</div>
 
@@ -46,12 +99,104 @@
 								</a>
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 									<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-									<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-									<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+									<a class="dropdown-item" href="#"  data-toggle="modal" data-target="#editMenu{{$menu->id}}Modal" type="button"><i class="dw dw-edit2"></i> Edit</a>
+									@if ($menu->visible == 1)
+									<a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteMenu{{$menu->id}}" type="button"><i class="dw dw-delete-3"></i> Delete</a>
+									@endif
 								</div>
 							</div>
 						</td>
 					</tr>
+					<div class="modal fade bs-example-modal-lg" id="editMenu{{$menu->id}}Modal" tabindex="-1" role="dialog" aria-labelledby="editMenu{{$menu->id}}ModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="editMenu{{$menu->id}}ModalLabel">Menu {{$menu->id}}</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								</div>
+								<div class="modal-body">
+									<form method="POST" action="{{route('edit.menu',$menu->id)}}" enctype="multipart/form-data">
+										@csrf
+										@method("patch")
+										<div class="form-group">
+											<label>Nama Menu</label>
+											<input class="form-control" type="text" name="nama_menu" value="{{old('nama_menu',$menu->nama)}}" placeholder="Johnny Brown" required>
+										</div>
+										<div class="form-group">
+											<label>Harga</label>
+											<input class="form-control" type="number" name="harga_menu" value="{{old('harga_menu',$menu->harga)}}" min="0" required>
+										</div>
+										<div class="form-group">
+											<label>Stok</label>
+											<input class="form-control" type="number" name="stok" value="{{old('stok',$menu->stok)}}" min="0" required>
+										</div>
+										<div class="form-group">
+											<label>Menu Kategori</label>
+											<select class="form-control" name="menu_kategori">
+												<option disabled selected>pilih</option>
+												@foreach ($MenuKategoris as $mk)
+													<option value="{{$mk->id}}" {{($menu->menu_kategori_id == $mk->id) ? "selected":""}}>{{$mk->nama_kategori}}</option>
+												@endforeach
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="">gambar</label>
+											<div class="row">
+												<div class="col-md-4">
+													<input type="file" class="form-control" name="gambar">
+												</div>
+												<div class="col-md-8">
+													<div class="" style="width: 50%; border: 1px solid black"><img src="{{asset($menu->gambar)}}" alt=""></div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-md-6 col-sm-12">
+													<label class="weight-600">Optional</label>
+													<div class="custom-control custom-checkbox mb-5">
+														<input type="checkbox" name="visible" class="custom-control-input" id="visibleCheck" {{($menu->visible == 1) ? "checked":""}}>
+														<label class="custom-control-label" for="visibleCheck">Dapat dilihat semua orang</label>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-12">
+													<label class="weight-600">Status Menu</label>
+													@foreach ($ListStatusMenu as $index => $statusList)	
+													<div class="custom-control custom-radio mb-5">
+														<input type="radio" id="status{{$index}}" value="{{$statusList}}" name="menu_status" {{($menu->menu_status == $statusList) ? "checked":""}} class="custom-control-input">
+														<label class="custom-control-label" for="status{{$index}}">{{$statusList}} </label>
+													</div>
+													@endforeach
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+											<button class="btn btn-primary" type="submit">Simpan</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					@if ($menu->visible == 1)
+					<div class="modal fade" id="deleteMenu{{$menu->id}}" tabindex="-1" role="dialog" aria-labelledby="deleteMenu{{$menu->id}}Label" aria-hidden="true">
+						<div class="modal-dialog modal-sm modal-dialog-centered">
+							<div class="modal-content bg-danger text-white">
+								<div class="modal-body text-center">
+									<h3 class="text-white mb-15"><i class="fa fa-exclamation-triangle"></i> Konfirmasi Hapus Menu</h3>
+									<p>Menu {{$menu->nama}} Akan Dihapus. Lanjutkan ?</p>
+									<form action="{{route('delete.menu',$menu->id)}}" method="POST">
+										@csrf
+										@method("delete")
+										<button type="submit" class="btn btn-danger active">Hapus</button>
+										<button type="button" class="btn btn-light"data-dismiss="modal">batal</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					@endif
 					@endforeach
 				</tbody>
 			</table>
@@ -96,16 +241,13 @@
 						<input class="form-control" type="number" name="harga_menu" value="{{old('harga_menu')}}" min="0" required>
 					</div>
 					<div class="form-group">
-						<label>Harga</label>
+						<label>Stok</label>
 						<input class="form-control" type="number" name="stok" value="{{old('stok')}}" min="0" required>
 					</div>
 					<div class="form-group">
 						<label>Menu Kategori</label>
 						<select class="form-control" name="menu_kategori">
 							<option disabled selected>pilih</option>
-							@php
-								$MenuKategoris = App\MenuKategori::get();
-							@endphp
 							@foreach ($MenuKategoris as $mk)
 							<option value="{{$mk->id}}">{{$mk->nama_kategori}}</option>
 								
@@ -118,14 +260,14 @@
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-6 col-sm-12">
+							{{-- <div class="col-md-6 col-sm-12">
 								
 								<label class="weight-600">Optional</label>
 								<div class="custom-control custom-checkbox mb-5">
 									<input type="checkbox" name="visible" class="custom-control-input" id="visibleCheck" checked>
 									<label class="custom-control-label" for="visibleCheck">Dapat dilihat semua orang</label>
 								</div>
-							</div>
+							</div> --}}
 							<div class="col-md-6 col-sm-12">
 								<label class="weight-600">Status Menu</label>
 								@foreach (App\Menu::LISTMENUSTATUS as $statusList)	

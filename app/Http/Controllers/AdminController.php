@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -16,7 +17,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.home');
+        $data["page_title"] = "Dashboard";
+        return view('admin.home')->with($data);
     }
 
     public function registration()

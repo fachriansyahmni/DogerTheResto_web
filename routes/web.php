@@ -60,6 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Menu
     Route::get('manage-menu', 'MenuController@manageMenu')->name('manage.menu');
     Route::post('store-new-menu', 'MenuController@storeMenu')->name('store.menu');
+    Route::patch('edit-menu/{idmenu}', 'MenuController@editMenu')->name('edit.menu');
+    Route::delete('delete-menu/{idmenu}', 'MenuController@deleteMenu')->name('delete.menu');
 
     Route::get('manage-kategori', 'MenuKategoriController@index')->name('manage.menu-kategori');
     Route::post('store-new-menu-kategori', 'MenuKategoriController@store')->name('store.menu-kategori');

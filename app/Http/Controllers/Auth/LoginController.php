@@ -46,7 +46,8 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login-deskapp');
+        // return view('auth.login-deskapp');
+        return view('auth.login-resto');
     }
 
     protected function authenticated(Request $request, $user)

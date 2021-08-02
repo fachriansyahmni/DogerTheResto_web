@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
+use App\MenuKategori;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -10,10 +11,13 @@ class MenuController extends Controller
 
     public function manageMenu()
     {
-        $AllMenu = Menu::get();
+        $data["page_title"] = "Manajemen Menu Makanan";
+        $AllMenu = Menu::where('visible', 1)->get();
 
-        $compacts = ['AllMenu'];
-        return view('mod.menu.manage', compact($compacts));
+        $MenuKategoris = MenuKategori::get();
+        $ListStatusMenu = Menu::LISTMENUSTATUS;
+        $compacts = ['AllMenu', 'MenuKategoris', 'ListStatusMenu'];
+        return view('mod.menu.manage', compact($compacts))->with($data);
     }
 
     public function storeMenu(Request $request)
@@ -40,6 +44,46 @@ class MenuController extends Controller
         if ($Menu) {
             return redirect()->back()->with('success', 'berhasil');
         }
+        return redirect()->back();
+    }
+
+    public function editMenu(Request $request, $idmenu)
+    {
+        $Menu = Menu::find($idmenu);
+        if ($request->hasFile('gambar')) {
+            $gambarMenu = time() . '.' . $request->gambar->extension();
+            $request->gambar->move(public_path('img/menu-images'), $gambarMenu);
+        } else {
+            $gambarMenu = $Menu->gambar;
+        }
+
+        if ($request->visible == "on") {
+            $rvisible = 1;
+        } else {
+            $rvisible = 0;
+        }
+
+        $Menu->nama = $request->nama_menu;
+        $Menu->harga = $request->harga_menu;
+        $Menu->menu_kategori_id = $request->menu_kategori;
+        $Menu->gambar = $gambarMenu;
+        $Menu->stok = $request->stok;
+        $Menu->visible =  $rvisible;
+        $Menu->menu_status = $request->menu_status;
+        $editSv = $Menu->save();
+
+        if ($editSv) {
+            return redirect()->back()->with('success', 'berhasil');
+        }
+        return redirect()->back();
+    }
+
+    public function deleteMenu(Request $request, $idmenu)
+    {
+        $Menu = Menu::find($idmenu);
+        $Menu->visible = 0;
+        $Menu->save();
+        dd($Menu);
         return redirect()->back();
     }
 }

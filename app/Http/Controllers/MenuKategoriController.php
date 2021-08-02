@@ -9,7 +9,8 @@ class MenuKategoriController extends MenuController
 {
     public function index()
     {
-        return view("mod.menu_kategori.index");
+        $data["page_title"] = "Manajemen Menu Kategori";
+        return view("mod.menu_kategori.index")->with($data);
     }
 
     public function store(Request $request)
