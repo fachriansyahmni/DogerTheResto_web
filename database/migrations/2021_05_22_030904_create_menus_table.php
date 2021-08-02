@@ -18,7 +18,9 @@ class CreateMenusTable extends Migration
             $table->string("nama");
             $table->integer("harga")->default(0);
             $table->unsignedBigInteger("menu_kategori_id")->nullable();
-            $table->enum("menu_status", ["available", "not available", "out of stock", "closed"])->default("available");
+            $table->integer("stok")->default(0);
+            $table->string("menu_status");
+            // $table->enum("menu_status", ["available", "not available", "out of stock", "closed"])->default("available");
             $table->boolean("visible")->default(1);
             $table->timestamps();
         });

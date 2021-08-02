@@ -12,6 +12,8 @@ class MenuKategori extends Model
      * @var array
      */
     protected $fillable = [
-        'nama_kategori', 'slug',
+        'nama_kategori',
     ];
+
+    public $timestamps = false;
 }

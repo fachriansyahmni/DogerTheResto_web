@@ -15,10 +15,10 @@ class CreateJadwalBukasTable extends Migration
     {
         Schema::create('jadwal_bukas', function (Blueprint $table) {
             $table->id();
-            $table->string("hariAwal");
-            $table->string("jamAwal");
-            $table->string("hariAkhir");
-            $table->string("jamAkhir");
+            $table->date("hariAwal");
+            $table->time("jamAwal");
+            $table->date("hariAkhir");
+            $table->time("jamAkhir");
             $table->timestamps();
         });
     }

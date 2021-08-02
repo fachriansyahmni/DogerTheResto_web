@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/landing',function () {
+Route::get('/landing', function () {
     return view('welcome');
 });
 
@@ -32,14 +32,15 @@ Route::get('/test', function () {
 
 // for admin
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-'], function () {
-    Route::get('/','AdminController@index')->name('index'); 
-    Route::get('/registration','AdminController@registration')->name('registration');
-    Route::post('/registration','AdminController@save')->name('save');
-    Route::post('/registration/edit/{id}','AdminController@edit')->name('edit');
-    Route::post('/registration/reset/{id}','AdminController@reset')->name('reset');
-    Route::put('/registration/delete/{id}','AdminController@delete')->name('delete');
-    Route::get('manage-user','AdminController@manageUser')->name('manage-user');
-    Route::get('/restaurant-information','AdminController@indexInfo')->name('indexInfo');
+    Route::get('/', 'AdminController@index')->name('index');
+    Route::get('/registration', 'AdminController@registration')->name('registration');
+    Route::post('/registration', 'AdminController@save')->name('save');
+    Route::post('/registration/edit/{id}', 'AdminController@edit')->name('edit');
+    Route::post('/registration/reset/{id}', 'AdminController@reset')->name('reset');
+    Route::put('/registration/delete/{id}', 'AdminController@delete')->name('delete');
+    Route::get('manage-user', 'AdminController@manageUser')->name('manage-user');
+    Route::get('/restaurant-information', 'AdminController@indexInfo')->name('indexInfo');
+    Route::get('manage-user', 'AdminController@manageUser')->name('manage-user');
 });
 
 // for cashier
@@ -61,4 +62,11 @@ Route::group(['middleware' => 'auth'], function () {
     // Menu
     Route::get('manage-menu', 'MenuController@manageMenu')->name('manage.menu');
     Route::post('store-new-menu', 'MenuController@storeMenu')->name('store.menu');
+    Route::patch('edit-menu/{idmenu}', 'MenuController@editMenu')->name('edit.menu');
+    Route::delete('delete-menu/{idmenu}', 'MenuController@deleteMenu')->name('delete.menu');
+
+    Route::get('manage-kategori', 'MenuKategoriController@index')->name('manage.menu-kategori');
+    Route::post('store-new-menu-kategori', 'MenuKategoriController@store')->name('store.menu-kategori');
+    Route::patch('edit-kategori/{idkategori}', 'MenuKategoriController@editKategori')->name('edit.kategori');
+    Route::delete('delete-kategori/{idkategori}', 'MenuKategoriController@deleteKategori')->name('delete.kategori');
 });

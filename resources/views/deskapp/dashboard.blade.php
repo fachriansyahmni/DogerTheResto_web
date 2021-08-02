@@ -22,16 +22,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/deskapp/src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/deskapp/vendors/styles/style.css')}}">
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script>
-
 	@stack('css')
 </head>
 <body>
@@ -68,13 +58,14 @@
 	<script src="{{ asset('/vendor/deskapp/vendors/scripts/script.min.js')}}"></script>
 	<script src="{{ asset('/vendor/deskapp/vendors/scripts/process.js')}}"></script>
 	<script src="{{ asset('/vendor/deskapp/vendors/scripts/layout-settings.js')}}"></script>
-	<script src="{{ asset('/vendor/deskapp/src/plugins/apexcharts/apexcharts.min.js')}}"></script>
 	<script src="{{ asset('/vendor/deskapp/src/plugins/datatables/js/jquery.dataTables.min.js')}}"></script>
 	<script src="{{ asset('/vendor/deskapp/src/plugins/datatables/js/dataTables.bootstrap4.min.js')}}"></script>
 	<script src="{{ asset('/vendor/deskapp/src/plugins/datatables/js/dataTables.responsive.min.js')}}"></script>
 	<script src="{{ asset('/vendor/deskapp/src/plugins/datatables/js/responsive.bootstrap4.min.js')}}"></script>
 	<script src="{{ asset('/vendor/deskapp/vendors/scripts/dashboard.js')}}"></script>
 
+	@stack('modal')
+	
 	@stack('script')
 </body>
 </html>
