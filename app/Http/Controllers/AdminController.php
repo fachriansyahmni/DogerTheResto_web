@@ -24,7 +24,7 @@ class AdminController extends Controller
         $users = DB::table('model_has_roles')
             ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
             ->join('users', 'model_has_roles.model_id', '=', 'users.id')
-            ->select('users.id', 'users.username', 'users.email', 'roles.name as role')
+            ->select('users.*', 'roles.name as role')
             ->get();
         return view('admin.registration', compact('users'));
     }
@@ -54,7 +54,7 @@ class AdminController extends Controller
     {
         $user =  User::create([
             'username' => $request['username'],
-            'email' => $request['email'],
+            'username' => $request['name'],
             'password' => Hash::make($request['password']),
         ]);
 

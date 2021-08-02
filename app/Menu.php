@@ -17,6 +17,7 @@ class Menu extends Model
     ];
 
     public const LISTMENUSTATUS = ["available", "not available", "out of stock", "closed"];
+    public const LISTMENUSTATUSDEFAULT = "available";
 
     public const DEFAULTIMAGEMENU = 'img/default-img-menu.jpg';
 

@@ -3,22 +3,22 @@
         "Admin" => [
             "Dashboard" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "admin-index",
                 "icon" => 'micon dw dw-house-1'
             ],
             "Manajemen Data User" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "admin-registration",
                 "icon" => 'micon dw dw-shop'
             ],
             "Manajemen Menu Makanan" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "manage.menu",
                 "icon" => 'micon dw dw-shop'
             ],
             "Manajemen Menu Kategori" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "manage.menu-kategori",
                 "icon" => 'micon dw dw-shop'
             ],
             "Manajemen Role" => [
@@ -28,7 +28,7 @@
             ],
             "Manajemen Meja" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "manage.table",
                 "icon" => 'micon dw dw-shop'
             ],
         ],

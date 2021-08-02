@@ -31,7 +31,8 @@ class MenuController extends Controller
             'harga' => $request->harga_menu,
             'menu_kategori_id' => 1, //example,
             'gambar' => $gambarMenu,
-            'menu_status' => 'available',
+            'stok' => $request->stok,
+            'menu_status' => MENU::LISTMENUSTATUSDEFAULT,
             'visible' => Menu::setVisibleMenu($request->visible),
         ];
         $Menu = Menu::create($menuParams);
