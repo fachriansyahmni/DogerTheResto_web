@@ -28,6 +28,7 @@ class AdminController extends Controller
             ->join('users', 'model_has_roles.model_id', '=', 'users.id')
             ->select('users.*', 'roles.name as role')
             ->get();
+        // dd($users);
         return view('admin.registration', compact('users'));
     }
 
@@ -79,5 +80,10 @@ class AdminController extends Controller
     public function indexInfo()
     {
         return view("admin.indexInfo");
+    }
+
+    public function Role()
+    {
+        return view("admin.role");
     }
 }

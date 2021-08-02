@@ -21,7 +21,7 @@
                 "url" => "manage.menu-kategori",
                 "icon" => 'micon dw dw-shop'
             ],
-            "Manajemen Role" => [
+            "Menu Kasir" => [
                 "has-sub" => false,
                 "url" => "home",
                 "icon" => 'micon dw dw-shop'
@@ -29,6 +29,11 @@
             "Manajemen Meja" => [
                 "has-sub" => false,
                 "url" => "manage.table",
+                "icon" => 'micon dw dw-shop'
+            ],
+            "Manajemen Role" => [
+                "has-sub" => false,
+                "url" => "admin-role",
                 "icon" => 'micon dw dw-shop'
             ],
         ],
@@ -75,7 +80,6 @@
                     <a href="/admin/registration" class="dropdown-toggle">
                         <span class="micon dw dw-edit2"></span><span class="mtext">Employee Registration</span>
                     </a>
-<<<<<<< HEAD
                 </li>
                 <li class="dropdown">
                     <a href="/admin/restaurant-information" class="dropdown-toggle">
@@ -91,9 +95,7 @@
                         <li><a href="datatable.html">DataTables</a></li>
                     </ul>
                 </li>
-=======
                 </li> --}}
->>>>>>> e123922252cda07d119b012649e4380ce732ad01
                 <li>
                     <div class="sidebar-small-cap">{{$index}}</div>
                 </li>

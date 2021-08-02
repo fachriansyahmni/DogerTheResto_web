@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-
     Route::get('manage-user', 'AdminController@manageUser')->name('manage-user');
     Route::get('/restaurant-information', 'AdminController@indexInfo')->name('indexInfo');
     Route::get('manage-user', 'AdminController@manageUser')->name('manage-user');
+    Route::get('/role', 'AdminController@role')->name('role');
 });
 
 // for cashier
