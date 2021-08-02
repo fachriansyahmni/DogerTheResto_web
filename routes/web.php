@@ -42,6 +42,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-
     Route::get('/restaurant-information', 'AdminController@indexInfo')->name('indexInfo');
     Route::get('manage-user', 'AdminController@manageUser')->name('manage-user');
     Route::get('/role', 'AdminController@role')->name('role');
+    Route::post('/role', 'AdminController@roleSave')->name('role-save');
+    Route::post('/role/edit/{id}', 'AdminController@roleEdit')->name('role-edit');
+    Route::get('/role/delete/{id}', 'AdminController@roleDelete')->name('role-delete');
 });
 
 // for cashier
