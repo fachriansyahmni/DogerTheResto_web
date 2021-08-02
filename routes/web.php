@@ -62,6 +62,9 @@ Route::group(['prefix' => 'chef', 'middleware' => 'role:chef'], function () {
 Route::group(['middleware' => 'auth'], function () {
     // Table
     Route::get('manage-table', 'TableController@manageTable')->name('manage.table');
+    Route::post('manage-table', 'TableController@save')->name('manage.table.save');
+    Route::post('manage-table/edit/{id}', 'TableController@edit')->name('manage.table.edit');
+    Route::get('manage-table/delete/{id}', 'TableController@delete')->name('manage.table.delete');
 
     // Menu
     Route::get('manage-menu', 'MenuController@manageMenu')->name('manage.menu');
