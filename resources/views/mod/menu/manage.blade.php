@@ -65,8 +65,8 @@
 		<div class="card-body">
 			<div class="clearfix">
 				<div class="pull-left">
-					<h4 class="text-blue h4">Employee Registration</h4>
-					<p class="mb-30">All bootstrap element classies</p>
+					<h4 class="text-blue h4">Daftar Menu</h4>
+					<p class="mb-30">Halaman manajemen menu</p>
 				</div>
 				<div class="pull-right">
 					<a href="#" data-toggle="modal" data-target="#addMenu">Tambah Menu</a>
@@ -278,30 +278,6 @@
 								@endforeach
 							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-						<button class="btn btn-primary" type="submit">Simpan</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade bs-example-modal-lg" id="addMenuKategori" tabindex="-1" role="dialog" aria-labelledby="addMenuKategoriLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="addMenuKategoriLabel">Tambah Menu Kategori</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			</div>
-			<div class="modal-body">
-				<form method="POST" action="{{route('store.menu-kategori')}}">
-					@csrf
-					<div class="form-group">
-						<label>Nama Menu Kategori</label>
-						<input class="form-control" type="text" name="nama_kategori" value="{{old('nama_kategori')}}" placeholder="ex: Makanan" required>
 					</div>
 					<div class="form-group">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

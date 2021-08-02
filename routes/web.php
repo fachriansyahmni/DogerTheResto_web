@@ -65,4 +65,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('manage-kategori', 'MenuKategoriController@index')->name('manage.menu-kategori');
     Route::post('store-new-menu-kategori', 'MenuKategoriController@store')->name('store.menu-kategori');
+    Route::patch('edit-kategori/{idkategori}', 'MenuKategoriController@editKategori')->name('edit.kategori');
+    Route::delete('delete-kategori/{idkategori}', 'MenuKategoriController@deleteKategori')->name('delete.kategori');
 });

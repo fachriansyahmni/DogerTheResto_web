@@ -78,12 +78,11 @@ class MenuController extends Controller
         return redirect()->back();
     }
 
-    public function deleteMenu(Request $request, $idmenu)
+    public function deleteMenu($idmenu)
     {
         $Menu = Menu::find($idmenu);
         $Menu->visible = 0;
         $Menu->save();
-        dd($Menu);
         return redirect()->back();
     }
 }
