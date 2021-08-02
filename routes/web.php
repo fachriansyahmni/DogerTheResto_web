@@ -38,7 +38,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-
     Route::post('/registration/edit/{id}','AdminController@edit')->name('edit');
     Route::post('/registration/reset/{id}','AdminController@reset')->name('reset');
     Route::put('/registration/delete/{id}','AdminController@delete')->name('delete');
-    Route::get('manage-user','AdminController@manageUser')->name('manage-user'); 
+    Route::get('manage-user','AdminController@manageUser')->name('manage-user');
+    Route::get('/restaurant-information','AdminController@indexInfo')->name('indexInfo');
 });
 
 // for cashier

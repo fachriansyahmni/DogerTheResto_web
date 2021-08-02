@@ -22,6 +22,11 @@
                     </a>
                 </li>
                 <li class="dropdown">
+                    <a href="/admin/restaurant-information" class="dropdown-toggle">
+                        <span class="micon dw dw-edit2"></span><span class="mtext">Restaurant Information</span>
+                    </a>
+                </li>
+                <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon dw dw-library"></span><span class="mtext">Tables</span>
                     </a>

@@ -73,4 +73,9 @@ class AdminController extends Controller
     {
         return response("manage user");
     }
+
+    public function indexInfo()
+    {
+        return view("admin.indexInfo");
+    }
 }
