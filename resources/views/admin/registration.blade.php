@@ -122,8 +122,8 @@
         <thead>
         <tr>
             <th scope="col">No</th>
+            <th scope="col">Name</th>
             <th scope="col">Username</th>
-            <th scope="col">Email</th>
             <th scope="col">Role</th>
             <th scope="col">Action</th>
         </tr>
@@ -133,8 +133,8 @@
             @foreach ($users as $user)
                 <tr>
                     <th scope="row">{{ $i }}</th>
+                    <th scope="row">{{ $user->name }}</th>
                     <th scope="row">{{ $user->username }}</th>
-                    <th scope="row">{{ $user->email }}</th>
                     <th scope="row">{{ $user->role }}</th>
                     <th scope="row">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal-{{ $user->id }}">
@@ -176,7 +176,7 @@
                               <div class="form-group row">
                                   <label class="col-sm-12 col-md-2 col-form-label">Name</label>
                                   <div class="col-sm-12 col-md-10">
-                                      <input class="form-control" type="text" name="name" placeholder="Name" value="{{ $user->email }}">
+                                      <input class="form-control" type="text" name="name" placeholder="Name" value="{{ $user->name }}">
                                   </div>
                               </div>
                               <?php
