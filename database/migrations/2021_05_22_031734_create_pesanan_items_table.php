@@ -18,7 +18,7 @@ class CreatePesananItemsTable extends Migration
             $table->unsignedBigInteger("pesanan_id");
             $table->unsignedBigInteger("menu_id");
             $table->integer("qty");
-            $table->integer("amount");
+            $table->integer("harga");
             $table->timestamps();
 
             $table->foreign("pesanan_id")->references("id")->on("pesanans")->cascadeOnDelete();

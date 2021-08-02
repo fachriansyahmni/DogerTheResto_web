@@ -15,9 +15,10 @@ class CreateInfoRestoransTable extends Migration
     {
         Schema::create('info_restorans', function (Blueprint $table) {
             $table->id();
-            $table->string("alamat");
-            $table->string("telp");
-            $table->string("fax");
+            $table->string("nama_resto");
+            $table->string("alamat")->nullable();
+            $table->string("telp")->nullable();
+            $table->string("fax")->nullable();
             $table->timestamps();
         });
     }

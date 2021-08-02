@@ -15,9 +15,7 @@ class CreateMenuKategorisTable extends Migration
     {
         Schema::create('menu_kategoris', function (Blueprint $table) {
             $table->id();
-            $table->string("nama_kategori");
-            $table->string("slug");
-            $table->timestamps();
+            $table->string("nama_kategori", 100);
         });
     }
 

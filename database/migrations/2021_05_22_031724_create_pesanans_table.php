@@ -16,9 +16,10 @@ class CreatePesanansTable extends Migration
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("pelayan_id")->nullable();
-            $table->unsignedBigInteger("meja_id")->nullable();
-            $table->integer("amount")->default(0);
+            $table->string("nomor_meja", 100)->nullable();
+            $table->integer("total_harga")->default(0);
             $table->timestamp("tglpesan")->nullable();
+            $table->string("status_pesanan", 100)->default("belum bayar");
             $table->timestamps();
         });
     }

@@ -13,8 +13,10 @@ class Menu extends Model
      * @var array
      */
     protected $fillable = [
-        'nama', 'harga', 'menu_kategori_id', 'gambar', 'menu_status', 'visible',
+        'nama', 'harga', 'menu_kategori_id', 'gambar', 'stok', 'menu_status', 'visible',
     ];
+
+    public const LISTMENUSTATUS = ["available", "not available", "out of stock", "closed"];
 
     public const DEFAULTIMAGEMENU = 'img/default-img-menu.jpg';
 
