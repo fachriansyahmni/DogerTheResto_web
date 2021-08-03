@@ -35,7 +35,7 @@
                 </ul>
               </div>
             </div>
-          </nav>
+        </nav>
       
           <section class="flexslider" data-section="welcome">
             <ul class="slides">

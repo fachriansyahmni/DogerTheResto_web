@@ -49,8 +49,11 @@ Route::group(['prefix' => 'cashier', 'middleware' => 'role:cashier'], function (
 });
 
 // for waiter
-Route::group(['prefix' => 'waiter', 'middleware' => 'role:waiter'], function () {
+Route::group(['prefix' => 'waiter', 'middleware' => 'role:pelayan', 'as' => 'waiter-'], function () {
+    Route::get('/', 'HomeController@waiterIndex')->name('index');
+    Route::get('/pemesanan', 'OrderController@pemesananIndex')->name('pemesanan-index');
 });
+Route::post('/pesanan-process', 'OrderController@konfirmasiOrder')->name('konfir-pesanan');
 
 // for koki
 Route::group(['prefix' => 'chef', 'middleware' => 'role:chef'], function () {

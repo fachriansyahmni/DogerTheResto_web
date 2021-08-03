@@ -57,6 +57,9 @@ class LoginController extends Controller
             return redirect()->route('admin-index');
         }
 
+        if ($user->hasRole('pelayan')) {
+            return redirect()->route('waiter-index');
+        }
         return redirect()->route('home');
     }
 }

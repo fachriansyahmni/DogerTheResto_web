@@ -5,7 +5,6 @@
 @endpush
 
 @section('main-content')
-    <a href="#" data-toggle="modal" data-target="#addMenuKategori">Tambah Menu Kategori</a>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xl-3 mb-30">
@@ -28,8 +27,8 @@
 						<div id="chart"></div>
 					</div>
 					<div class="widget-data">
-						<div class="h4 mb-0">2020</div>
-						<div class="weight-600 font-14">Contact</div>
+						<div class="h4 mb-0">{{count(App\Menu::where('visible',1)->where("menu_status","available")->get())}}</div>
+						<div class="weight-600 font-14">Menu Tersedia</div>
 					</div>
 				</div>
 			</div>
@@ -90,7 +89,7 @@
 						<td class="table-plus">{{$menu->nama}}</td>
 						<td class="table-plus">{{$menu->harga}}</td>
 						<td class="table-plus">{{$menu->stok}}</td>
-						<td class="table-plus">{{$menu->menu_kategori_id}}</td>
+						<td class="table-plus">{{$menu->menuKategori->nama_kategori}}</td>
 						<td class="table-plus">{{$menu->menu_status}}</td>
 						<td>
 							<div class="dropdown">
@@ -120,7 +119,7 @@
 										@method("patch")
 										<div class="form-group">
 											<label>Nama Menu</label>
-											<input class="form-control" type="text" name="nama_menu" value="{{old('nama_menu',$menu->nama)}}" placeholder="Johnny Brown" required>
+											<input class="form-control" type="text" name="nama_menu" value="{{old('nama_menu',$menu->nama)}}" required>
 										</div>
 										<div class="form-group">
 											<label>Harga</label>
@@ -234,7 +233,7 @@
 					@csrf
 					<div class="form-group">
 						<label>Nama Menu</label>
-						<input class="form-control" type="text" name="nama_menu" value="{{old('nama_menu')}}" placeholder="Johnny Brown" required>
+						<input class="form-control" type="text" name="nama_menu" value="{{old('nama_menu')}}" required>
 					</div>
 					<div class="form-group">
 						<label>Harga</label>
@@ -249,8 +248,7 @@
 						<select class="form-control" name="menu_kategori">
 							<option disabled selected>pilih</option>
 							@foreach ($MenuKategoris as $mk)
-							<option value="{{$mk->id}}">{{$mk->nama_kategori}}</option>
-								
+								<option value="{{$mk->id}}">{{$mk->nama_kategori}}</option>
 							@endforeach
 						</select>
 					</div>
@@ -260,20 +258,12 @@
 					</div>
 					<div class="form-group">
 						<div class="row">
-							{{-- <div class="col-md-6 col-sm-12">
-								
-								<label class="weight-600">Optional</label>
-								<div class="custom-control custom-checkbox mb-5">
-									<input type="checkbox" name="visible" class="custom-control-input" id="visibleCheck" checked>
-									<label class="custom-control-label" for="visibleCheck">Dapat dilihat semua orang</label>
-								</div>
-							</div> --}}
 							<div class="col-md-6 col-sm-12">
 								<label class="weight-600">Status Menu</label>
-								@foreach (App\Menu::LISTMENUSTATUS as $statusList)	
+								@foreach ($ListStatusMenu as $index => $statusList)	
 								<div class="custom-control custom-radio mb-5">
-									<input type="radio" id="" name="menu_status" class="custom-control-input">
-									<label class="custom-control-label" for="">{{$statusList}}</label>
+									<input type="radio" id="nstatus{{$index}}" value="{{$statusList}}" name="menu_status" class="custom-control-input">
+									<label class="custom-control-label" for="nstatus{{$index}}">{{$statusList}} </label>
 								</div>
 								@endforeach
 							</div>

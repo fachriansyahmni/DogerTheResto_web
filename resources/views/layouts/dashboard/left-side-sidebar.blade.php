@@ -21,11 +21,11 @@
                 "url" => "manage.menu-kategori",
                 "icon" => 'micon dw dw-shop'
             ],
-            "Menu Kasir" => [
-                "has-sub" => false,
-                "url" => "home",
-                "icon" => 'micon dw dw-shop'
-            ],
+            // "Menu Kasir" => [
+            //     "has-sub" => false,
+            //     "url" => "home",
+            //     "icon" => 'micon dw dw-shop'
+            // ],
             "Manajemen Meja" => [
                 "has-sub" => false,
                 "url" => "manage.table",
@@ -40,12 +40,12 @@
         "Pelayan" => [
             "Dashboard" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "waiter-index",
                 "icon" => 'micon dw dw-house-1'
             ],
             "Pemesanan Menu" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "waiter-pemesanan-index",
                 "icon" => 'micon dw dw-house-1'
             ],
         ],
