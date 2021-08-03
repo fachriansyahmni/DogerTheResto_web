@@ -12,7 +12,7 @@
             <thead>
                 <tr role="row">
                     <th class="table-plus datatable-nosort sorting_asc" rowspan="1" colspan="1" aria-label="Name">No</th>
-                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending">Nama Meja</th>
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending">Nomor Meja</th>
                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">Status</th>
                     <th class="datatable-nosort sorting_disabled" rowspan="1" colspan="1" aria-label="Action">Action</th>
                 </tr>
@@ -22,8 +22,8 @@
             @foreach ($tables as $table)
                 <tr role="row" class="even">
                     <td class="table-plus sorting_1" tabindex="0"><?= $i; ?></td>
-                    <td><?= $table->nama_meja; ?></td>
-                    <td><?= $table->status; ?></td>
+                    <td><?= $table->nomor_meja; ?></td>
+                    <td><?= ($table->status == 1) ? "Tersedia" : "Tidak Tersedia"; ?></td>
                     <td>
                         <div class="dropdown">
                             <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -31,7 +31,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit-{{ $table->id }}"><i class="dw dw-edit2"></i> Edit</a>
-                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+                                <a class="dropdown-item" href="/manage-table/delete/{{ $table->id }}"><i class="dw dw-delete-3"></i> Delete</a>
                             </div>
                         </div>
                     </td>
@@ -43,27 +43,26 @@
                     <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myLargeModalLabel">Tambah Role</h4>
+                                <h4 class="modal-title" id="myLargeModalLabel">Ubah Meja</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
-                            <form action="/admin/role/edit/{{ $table->id }}" method="POST">
+                            <form action="/manage-table/edit/{{ $table->id }}" method="POST">
                                 @method("POST")
                                 @csrf
                                 <div class="modal-body">
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-md-2 col-form-label">Role</label>
+                                            <label class="col-sm-12 col-md-2 col-form-label">Nomor Meja</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <input class="form-control" name="name" type="text" placeholder="Masukan Role" value="{{ $table->nama_meja }}" required>
+                                                <input class="form-control" name="nomorMeja" type="text" placeholder="Masukan Role" value="{{ $table->nomor_meja }}" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-md-2 col-form-label">Select</label>
+                                            <label class="col-sm-12 col-md-2 col-form-label">Status Meja</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <select class="custom-select col-12">
-                                                    <option selected="">Choose...</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                <select class="custom-select col-12" name="status">
+                                                    <option selected="">Pilih Status</option>
+                                                    <option value="1" <?= ($table->status == 1) ? "selected" : ""; ?>>Tersedia</option>
+                                                    <option value="0" <?= ($table->status == 0) ? "selected" : ""; ?>>Tidak Tersedia</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -90,23 +89,22 @@
                 <h4 class="modal-title" id="myLargeModalLabel">Tambah Meja</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <form action="/admin/manage-table" method="POST">
+            <form action="/manage-table" method="POST">
                 @csrf
                 <div class="modal-body">
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Meja</label>
+                            <label class="col-sm-12 col-md-2 col-form-label">Nomor Meja</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="name" type="text" placeholder="Masukan Nama Meja" required>
+                                <input class="form-control" name="nomorMeja" type="text" placeholder="Masukan Nama Meja" required>
                             </div>
                         </div>
                         <div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Status</label>
 							<div class="col-sm-12 col-md-10">
-								<select class="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+								<select class="custom-select col-12" name="status">
+									<option selected="">Pilih Status</option>
+									<option value="1">Tersedia</option>
+									<option value="0">Tidak Tersedia</option>
 								</select>
 							</div>
 						</div>

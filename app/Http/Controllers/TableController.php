@@ -16,7 +16,7 @@ class TableController extends Controller
     public function save(Request $request)
     {
         $meja = new Meja;
-        $meja->nama_meja = $request->name;
+        $meja->nomor_meja = $request->nomorMeja;
         $meja->status = $request->status;
         $meja->save();
         return redirect()->route('manage.table.save');
@@ -25,13 +25,13 @@ class TableController extends Controller
     public function edit(Request $request, $id)
     {
         $meja = Meja::find($id);
-        $meja->nama_meja = $request->name;
+        $meja->nomor_meja = $request->nomorMeja;
         $meja->status = $request->status;
         $meja->save();
         return redirect()->route('manage.table.save');
     }
 
-    public function FunctionName($id)
+    public function delete($id)
     {
         $meja = Meja::find($id);
         $meja->delete();
