@@ -97,8 +97,11 @@
             <div class="col-sm-12 col-md-10">
                 <select class="custom-select col-12" name="role">
                     <option selected="">Choose...</option>
-                    {{-- <option value=3>Pelayan</option>
-                    <option value=5>Kasir</option>
+                    @foreach (App\Role::get() as $role)
+                        <option value={{$role->id}}>{{$role->name}}</option>
+                        
+                    @endforeach
+                    {{-- <option value=5>Kasir</option>
                     <option value=4>Koki</option>
                     <option value=6>Owner</option> --}}
                 </select>
