@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -77,13 +78,35 @@ class AdminController extends Controller
         return response("manage user");
     }
 
-    public function indexInfo()
-    {
-        return view("admin.indexInfo");
-    }
-
     public function Role()
     {
-        return view("admin.role");
+        $roles = Role::get();
+        return view("admin.role", compact('roles'));
+    }
+
+    public function roleSave(Request $request)
+    {
+        $role = new Role;
+        $role->name = $request->name;
+        $role->guard_name = "web";
+        $role->save();
+        return redirect()->route('admin-role-save');
+    }
+
+    public function roleEdit(Request $request, $id)
+    {
+        $role = Role::find($id);
+        $role->name = $request->name;
+        $role->guard_name = "web";
+        $role->save();
+        return redirect()->route('admin-role-save');
+    }
+
+    public function roleDelete($id)
+    {
+        // dd($id);
+        $role = Role::find($id);
+        $role->delete();
+        return redirect()->route('admin-role-save');
     }
 }
