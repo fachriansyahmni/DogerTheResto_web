@@ -128,14 +128,16 @@
                         <tr>
                             <th class="table-plus datatable-nosort">Tanggal Pesan</th>
                             <th>Total Harga</th>
+                            <th>Status Nota</th>
                             <th class="datatable-nosort">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($AllOrders as $Order)
                         <tr>
-                            <td class="table-plus">{{$Order->tglpesan}}</td>
+                            <td class="table-plus">{{$Order->tgl_pesan}}</td>
                             <td class="table-plus">{{ $Order->total_harga }}</td>
+                            <td class="table-plus">{{ $Order->status_nota }}</td>
                             <td>
                                 <a href="" class="btn btn-primary">View</a>
                             </td>
