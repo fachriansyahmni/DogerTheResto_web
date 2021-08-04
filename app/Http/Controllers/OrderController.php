@@ -63,4 +63,11 @@ class OrderController extends Controller
         $compacts = ['AllOrders'];
         return view("mod.order.list_order", compact($compacts));
     }
+
+    public function listChef()
+    {
+        $AllOrders = Pesanan::orderBy("created_at", "DESC")->get();
+        $compacts = ['AllOrders'];
+        return view("koki.index", compact($compacts));
+    }
 }

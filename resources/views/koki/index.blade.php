@@ -18,9 +18,6 @@
 				<thead>
 					<tr>
 						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
-						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
-						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
-						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
 						<th></th>
 						<th class="datatable-nosort">Action</th>
 					</tr>

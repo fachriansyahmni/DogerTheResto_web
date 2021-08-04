@@ -92,4 +92,5 @@ class MenuController extends Controller
         $compacts = ['AllMenu'];
         return view("koki.status_menu", compact($compacts));
     }
+
 }
