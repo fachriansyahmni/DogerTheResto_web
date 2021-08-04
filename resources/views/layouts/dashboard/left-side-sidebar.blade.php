@@ -57,7 +57,7 @@
             ],
             "Pesanan" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "chef-order-list",
                 "icon" => 'micon dw dw-house-1'
             ],
             "Status Menu" => [

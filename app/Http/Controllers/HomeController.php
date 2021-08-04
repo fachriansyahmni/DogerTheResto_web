@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('pelayan.index');
     }
+
+    public function chefIndex()
+    {
+        return view('koki.index');
+    }
 }

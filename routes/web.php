@@ -59,7 +59,9 @@ Route::group(['prefix' => 'waiter', 'middleware' => 'role:pelayan', 'as' => 'wai
 Route::post('/pesanan-process', 'OrderController@konfirmasiOrder')->name('konfir-pesanan');
 
 // for koki
-Route::group(['prefix' => 'chef', 'middleware' => 'role:chef'], function () {
+Route::group(['prefix' => 'chef', 'middleware' => 'role:koki', 'as' => 'chef-'], function () {
+    Route::get('/', 'HomeController@chefIndex')->name('index');
+    Route::get('/daftar-pesanan', 'OrderController@listOrder')->name('order-list');
 });
 
 Route::group(['middleware' => 'auth'], function () {

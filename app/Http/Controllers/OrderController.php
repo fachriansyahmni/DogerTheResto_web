@@ -56,4 +56,11 @@ class OrderController extends Controller
         $Pesanan->save();
         return redirect()->back();
     }
+
+    public function listOrder()
+    {
+        $AllOrders = Pesanan::orderBy("created_at", "DESC")->get();
+        $compacts = ['AllOrders'];
+        return view("mod.order.list_order", compact($compacts));
+    }
 }
