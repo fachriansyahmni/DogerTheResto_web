@@ -38,4 +38,10 @@ class HomeController extends Controller
         $compacts = ['Orders'];
         return view('koki.index', compact($compacts));
     }
+
+    public function cashierIndex()
+    {
+        $compacts = [];
+        return view('kasir.index', compact($compacts));
+    }
 }

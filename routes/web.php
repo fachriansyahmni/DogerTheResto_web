@@ -18,7 +18,7 @@ Route::get('/landing', function () {
 });
 
 Route::get('/', function () {
-    return view('welcome2');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -52,6 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-
 // for cashier
 Route::group(['prefix' => 'cashier', 'middleware' => 'role:kasir', 'as' => 'cashier-'], function () {
     Route::get('/', 'HomeController@cashierIndex')->name('index');
+    Route::get('/struk-pesanan', 'CashierController@receiptIndex')->name('receipt-index');
     Route::get('/laporan-penghasilan', 'OrderController@reportIndex')->name('report');
 });
 
@@ -86,4 +87,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('store-new-menu-kategori', 'MenuKategoriController@store')->name('store.menu-kategori');
     Route::patch('edit-kategori/{idkategori}', 'MenuKategoriController@editKategori')->name('edit.kategori');
     Route::delete('delete-kategori/{idkategori}', 'MenuKategoriController@deleteKategori')->name('delete.kategori');
+
+    Route::post("receipt-save/{idpesanan}", "OrderController@storeReceipt")->name('save-receipt');
 });

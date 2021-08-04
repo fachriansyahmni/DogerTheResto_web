@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ItemNotaPesanan;
 use App\Meja;
 use App\Menu;
+use App\NotaPesanan;
 use App\Pesanan;
 use App\PesananItem;
 use Carbon\Carbon;
@@ -81,5 +83,33 @@ class OrderController extends Controller
         $Pesanan = Pesanan::find($id);
         $returnHTML = view('mod.order.details-order')->with('Pesanan', $Pesanan)->render();
         return response()->json(['html' => $returnHTML]);
+    }
+
+    public function storeReceipt($idpesanan)
+    {
+        $Pesanan = Pesanan::find($idpesanan);
+        $Receipt = new NotaPesanan([
+            'nomor_pesanan' => $Pesanan->id,
+            'total_harga' => $Pesanan->total_harga,
+            'tgl_pesan' => $Pesanan->tglpesan,
+            'tgl_bayar' => date("Y-m-d"),
+            'status_nota' => "Lunas",
+            'kasir_id' => Auth::user()->id
+        ]);
+        $Receipt->save();
+
+        foreach ($Pesanan->pesananItems as $item) {
+            $itemNota = new ItemNotaPesanan([
+                'id_nota' => $Receipt->id,
+                'nama_menu' => $item->dMenu->nama,
+                'qty' => $item->qty,
+                'harga' => $item->dMenu->harga,
+                'total_harga' => $item->harga
+            ]);
+            $itemNota->save();
+        }
+        $Pesanan->status_pesanan = "LUNAS";
+        $Pesanan->save();
+        return redirect()->back();
     }
 }

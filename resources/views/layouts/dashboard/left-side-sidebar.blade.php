@@ -69,12 +69,12 @@
         "Kasir" => [
             "Dashboard" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "cashier-index",
                 "icon" => 'micon dw dw-house-1'
             ],
             "Data Struk Pesanan" => [
                 "has-sub" => false,
-                "url" => 'home',
+                "url" => 'cashier-receipt-index',
                 "icon" => 'micon dw dw-notebook'
             ],
             "Laporan Penghasilan" => [
