@@ -35,4 +35,9 @@ class HomeController extends Controller
     {
         return view('koki.index');
     }
+
+    public function cashierIndex()
+    {
+        return view('kasir.index');
+    }
 }

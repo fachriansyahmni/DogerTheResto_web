@@ -48,7 +48,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-
 });
 
 // for cashier
-Route::group(['prefix' => 'cashier', 'middleware' => 'role:cashier'], function () {
+Route::group(['prefix' => 'cashier', 'middleware' => 'role:kasir', 'as' => 'cashier-'], function () {
+    Route::get('/', 'HomeController@cashierIndex')->name('index');
+    Route::get('/receipt', 'CashierController@receiptIndex')->name('receipt-index');
+    Route::get('/report', 'CashierController@reportIndex')->name('report-index');
 });
 
 // for waiter
