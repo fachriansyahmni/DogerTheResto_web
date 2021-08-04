@@ -18,15 +18,17 @@
 				<thead>
 					<tr>
 						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
-						<th></th>
+						<th class="table-plus datatable-nosort">Total Menu</th>
+						<th class="table-plus datatable-nosort">Tanggal Pesan</th>
 						<th class="datatable-nosort">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-
-					<tr>
-						<td class="table-plus"></td>
-						<td class="table-plus"></td>
+                    @foreach ($Orders as $order)   
+					<tr class="list_pesanan" data-pid="{{$order->id}}">
+						<td class="table-plus">{{$order->id}}</td>
+                        <td>{{count($order->pesananItems)}}</td>
+                        <td>{{$order->tglpesan}}</td>
 						<td>
 							<div class="dropdown">
 								<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -37,13 +39,14 @@
 							</div>
 						</td>
 					</tr>
+                    @endforeach
 
 				</tbody>
 			</table>
 		</div>
 	</div>
 	<br><br>
-	<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+	<div class="pd-20 bg-white border-radius-4 box-shadow mb-30" id="results">
         <center><b>Detail Pesanan</b></center><br>
         <B>No Meja</B> : <p style="float:right"><b>Status</b> : Menunggu</p><br>
         <b>Menu</b> <p style="float:right"><b>Tanggal</b> : DD-MM-YYYY</p>
@@ -53,4 +56,22 @@
 
 @push('script')
 	<script src="{{asset('vendor/deskapp/vendors/scripts/datatable-setting.js')}}"></script>
+    <script>
+        $('.list_pesanan').click(function(){
+            var pesananid = $(this).data("pid");
+            getDetailPesanan(pesananid);
+        });
+
+        function getDetailPesanan(pesananid){
+            $.ajax({
+                url: "/detail-pesanan/"+pesananid,
+                type: "get",
+                data: {id : pesananid},
+                success: function(data){
+                    $("#results").html(data.html);
+                    console.log(data.html);
+                }
+            });
+        }
+    </script>
 @endpush

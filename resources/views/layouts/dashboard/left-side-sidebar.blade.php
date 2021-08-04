@@ -58,12 +58,12 @@
             "Pesanan" => [
                 "has-sub" => false,
                 "url" => "chef-order-list",
-                "icon" => 'micon dw dw-house-1'
+                "icon" => 'micon dw dw-notepad-1'
             ],
             "Status Menu" => [
                 "has-sub" => false,
-                "url" => "home",
-                "icon" => 'micon dw dw-house-1'
+                "url" => "chef-status-menu",
+                "icon" => 'micon dw dw-edit-file'
             ],
         ],
         "Kasir" => [
@@ -79,7 +79,7 @@
             ],
             "Laporan Penghasilan" => [
                 "has-sub" => false,
-                "url" => "cashier-report-index",
+                "url" => "cashier-report",
                 "icon" => 'micon dw dw dw-notepad-1'
             ],
         ]

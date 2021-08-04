@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Meja;
 use App\Menu;
 use App\Pesanan;
 use App\PesananItem;
@@ -27,10 +28,11 @@ class OrderController extends Controller
     {
         $ListMenuId = $request->menuid;
         $MenuQTY = $request->qty;
+        $DataMeja = Meja::find($request->noMeja);
         $totalHarga = 0;
         $Pesanan = new Pesanan([
             "pelayan_id" => Auth::user()->id,
-            "nomor_meja" => 1,
+            "nomor_meja" => $request->noMeja,
             "total_harga" => $totalHarga,
             "tglpesan" => Carbon::now()->toDateTimeString(),
             "status_pesanan" => "Proses Ke Koki"
@@ -54,6 +56,9 @@ class OrderController extends Controller
 
         $Pesanan->total_harga = $totalHarga;
         $Pesanan->save();
+
+        $DataMeja->status = 0;
+        $DataMeja->save();
         return redirect()->back();
     }
 
@@ -62,5 +67,19 @@ class OrderController extends Controller
         $AllOrders = Pesanan::orderBy("created_at", "DESC")->get();
         $compacts = ['AllOrders'];
         return view("mod.order.list_order", compact($compacts));
+    }
+
+    public function reportIndex()
+    {
+        $AllOrders = Pesanan::whereMonth("tglpesan", '=', date("m"))->orderBy("created_at", "DESC")->get();
+        $compacts = ['AllOrders'];
+        return view("kasir.reports", compact($compacts));
+    }
+
+    public function ajaxGetDetailPesanan($id)
+    {
+        $Pesanan = Pesanan::find($id);
+        $returnHTML = view('mod.order.details-order')->with('Pesanan', $Pesanan)->render();
+        return response()->json(['html' => $returnHTML]);
     }
 }

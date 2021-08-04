@@ -30,6 +30,8 @@ Route::get('/test', function () {
     return view('Berhasil');
 });
 
+Route::get("/detail-pesanan/{idpesanan}", 'OrderController@ajaxGetDetailPesanan');
+
 // for admin
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-'], function () {
     Route::get('/', 'AdminController@index')->name('index');
@@ -51,7 +53,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-
 Route::group(['prefix' => 'cashier', 'middleware' => 'role:kasir', 'as' => 'cashier-'], function () {
     Route::get('/', 'HomeController@cashierIndex')->name('index');
     Route::get('/receipt', 'CashierController@receiptIndex')->name('receipt-index');
-    Route::get('/report', 'CashierController@reportIndex')->name('report-index');
+    Route::get('/laporan-penghasilan', 'OrderController@reportIndex')->name('report');
 });
 
 // for waiter
@@ -65,6 +67,7 @@ Route::post('/pesanan-process', 'OrderController@konfirmasiOrder')->name('konfir
 Route::group(['prefix' => 'chef', 'middleware' => 'role:koki', 'as' => 'chef-'], function () {
     Route::get('/', 'HomeController@chefIndex')->name('index');
     Route::get('/daftar-pesanan', 'OrderController@listOrder')->name('order-list');
+    Route::get('/status-menu', 'MenuController@AllMenu')->name('status-menu');
 });
 
 Route::group(['middleware' => 'auth'], function () {
