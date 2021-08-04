@@ -7,7 +7,7 @@
 			<div class="clearfix">
 				<div class="pull-left">
 					<h4 class="text-blue h4">Daftar Pesanan</h4>
-					<p class="mb-30">Halaman daftar pesanan</p>
+					<p class="mb-30">Tabel daftar pesanan</p>
 				</div>
 				{{-- <div class="pull-right">
 					<a href="#" data-toggle="modal" data-target="#addMenuKategori">Tambah Kategori</a>
