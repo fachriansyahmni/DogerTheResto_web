@@ -7,7 +7,7 @@
 			<div class="clearfix">
 				<div class="pull-left">
 					<h4 class="text-blue h4">Daftar Menu</h4>
-					<p class="mb-30">Halaman Daftar Menu</p>
+					<p class="mb-30">Tabel Daftar Menu</p>
 				</div>
 				{{-- <div class="pull-right">
 					<a href="#" data-toggle="modal" data-target="#addMenuKategori">Tambah Kategori</a>
@@ -29,7 +29,11 @@
 				<tbody>
 					@foreach ($AllMenu as $Menu)
 					<tr>
-						<td class="table-plus">{{$Menu}}</td>
+						<td class="table-plus">{{$Menu->nama}}</td>
+						<td class="table-plus">{{$Menu->harga}}</td>
+						<td class="table-plus">{{$Menu->menu_kategori_id}}</td>
+						<td class="table-plus">{{$Menu->stok}}</td>
+						<td class="table-plus">{{$Menu->menu_status}}</td>
 						<td class="table-plus"></td>
 						<td>
 							<div class="dropdown">

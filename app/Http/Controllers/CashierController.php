@@ -16,4 +16,9 @@ class CashierController extends Controller
         $compacts = ['Receipts', 'AllOrders'];
         return view("kasir.receipt", compact($compacts));
     }
+
+    public function reportIndex()
+    {
+        return view('kasir.report');
+    }
 }

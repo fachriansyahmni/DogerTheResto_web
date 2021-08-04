@@ -70,7 +70,6 @@ class OrderController extends Controller
         $compacts = ['AllOrders'];
         return view("mod.order.list_order", compact($compacts));
     }
-
     public function reportIndex()
     {
         $AllOrders = Pesanan::whereMonth("tglpesan", '=', date("m"))->orderBy("created_at", "DESC")->get();
@@ -83,6 +82,7 @@ class OrderController extends Controller
         $Pesanan = Pesanan::find($id);
         $returnHTML = view('mod.order.details-order')->with('Pesanan', $Pesanan)->render();
         return response()->json(['html' => $returnHTML]);
+
     }
 
     public function storeReceipt($idpesanan)

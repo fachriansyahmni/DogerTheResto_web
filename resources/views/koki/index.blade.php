@@ -20,6 +20,7 @@
 						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
 						<th class="table-plus datatable-nosort">Total Menu</th>
 						<th class="table-plus datatable-nosort">Tanggal Pesan</th>
+
 						<th class="datatable-nosort">Action</th>
 					</tr>
 				</thead>
@@ -46,7 +47,7 @@
 		</div>
 	</div>
 	<br><br>
-	<div class="pd-20 bg-white border-radius-4 box-shadow mb-30" id="results">
+	<div class="pd-20 bg-white border-radius-4 box-shadow mb-30 d-none" id="results">
         <center><b>Detail Pesanan</b></center><br>
         <B>No Meja</B> : <p style="float:right"><b>Status</b> : Menunggu</p><br>
         <b>Menu</b> <p style="float:right"><b>Tanggal</b> : DD-MM-YYYY</p>
@@ -69,6 +70,7 @@
                 data: {id : pesananid},
                 success: function(data){
                     $("#results").html(data.html);
+                    $("#results").removeClass('d-none');
                     console.log(data.html);
                 }
             });

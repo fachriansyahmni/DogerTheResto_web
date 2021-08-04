@@ -7,7 +7,7 @@
 			<div class="clearfix">
 				<div class="pull-left">
 					<h4 class="text-blue h4">Daftar Pesanan</h4>
-					<p class="mb-30">Halaman daftar pesanan</p>
+					<p class="mb-30">Tabel daftar pesanan</p>
 				</div>
 				{{-- <div class="pull-right">
 					<a href="#" data-toggle="modal" data-target="#addMenuKategori">Tambah Kategori</a>
@@ -18,6 +18,10 @@
 				<thead>
 					<tr>
 						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
+						<th class="table-plus datatable-nosort">Nomor Meja</th>
+						<th class="table-plus datatable-nosort">Total Harga</th>
+						<th class="table-plus datatable-nosort">Tanggal Pesan</th>
+						<th class="table-plus datatable-nosort">Status Pesanan</th>
 						<th></th>
 						<th class="datatable-nosort">Action</th>
 					</tr>
@@ -25,8 +29,11 @@
 				<tbody>
 					@foreach ($AllOrders as $Order)
 					<tr>
-						<td class="table-plus">{{$Order}}</td>
-						<td class="table-plus"></td>
+						<td class="table-plus">{{$Order->id}}</td>
+						<td class="table-plus">{{$Order->nomor_meja}}</td>
+						<td class="table-plus">{{$Order->total_harga}}</td>
+						<td class="table-plus">{{$Order->tglpesan}}</td>
+						<td class="table-plus">{{$Order->status_pesanan}}</td>
 						<td>
 							<div class="dropdown">
 								<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
