@@ -79,7 +79,7 @@
             ],
             "Laporan Penghasilan" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "cashier-report",
                 "icon" => 'micon dw dw dw-notepad-1'
             ],
         ]
