@@ -20,6 +20,9 @@ Route::get('/landing', function () {
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/menu', function () {
+    return view('list_menu');
+});
 
 Auth::routes();
 
