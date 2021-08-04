@@ -149,7 +149,9 @@
                         Total Harga : {{$order->total_harga}}
                     </div>
                     <div class="">
-                        Pelayan : {{$order->Pelayan->name}}
+                        Pelayan : @isset($record)
+                        {{$order->Pelayan->name}}
+                        @endisset
                     </div>
                 </div>
             </div>
