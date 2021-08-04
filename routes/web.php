@@ -30,6 +30,8 @@ Route::get('/test', function () {
     return view('Berhasil');
 });
 
+Route::get("/detail-pesanan/{idpesanan}", 'OrderController@ajaxGetDetailPesanan');
+
 // for admin
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-'], function () {
     Route::get('/', 'AdminController@index')->name('index');

@@ -75,4 +75,11 @@ class OrderController extends Controller
         $compacts = ['AllOrders'];
         return view("kasir.reports", compact($compacts));
     }
+
+    public function ajaxGetDetailPesanan($id)
+    {
+        $Pesanan = Pesanan::find($id);
+        $returnHTML = view('mod.order.details-order')->with('Pesanan', $Pesanan)->render();
+        return response()->json(['html' => $returnHTML]);
+    }
 }
