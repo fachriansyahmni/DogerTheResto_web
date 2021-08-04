@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Meja;
 use App\Pesanan;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,11 @@ class HomeController extends Controller
 
     public function waiterIndex()
     {
-        return view('pelayan.index');
+        $data["page_title"] = "Dashboard Pelayan";
+        $AllOrders = Pesanan::orderBy("id", "DESC")->get();
+        $AllMeja = Meja::get();
+        $compacts = ['AllOrders', 'AllMeja'];
+        return view('pelayan.index', compact($compacts))->with($data);
     }
 
     public function chefIndex()

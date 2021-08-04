@@ -115,8 +115,8 @@
             <div class="container">
               <div class="row">
                 <div class="probootstrap-cell-retro">
-                  @foreach (App\Menu::where("visible",1)->take(10)->get() as $index => $menu)
-                  @if ($index < 5)
+                  @foreach (App\Menu::where("visible",1)->take(20)->get() as $index => $menu)
+                  @if ($index < 10)
                   <div class="half">
                     @if ($index % 2 == 0)
                         <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
