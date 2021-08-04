@@ -86,6 +86,13 @@ class MenuController extends Controller
         return redirect()->back();
     }
 
+    public function editStatus(Request $request, $idmenu)
+    {
+        $Menu = Menu::find($idmenu);
+        $Menu->menu_status = $request->menu_status;$Menu->save();
+        return redirect()->back();
+    }
+
     public function allMenu()
     {
         $AllMenu = Menu::orderBy("created_at", "DESC")->get();

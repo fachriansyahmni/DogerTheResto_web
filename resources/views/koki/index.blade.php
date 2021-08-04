@@ -51,22 +51,6 @@
                                     <h4 class="modal-title" id="myLargeModalLabel">Tambah Role</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 </div>
-                                <form action="{{ $order->id }}" method="POST">
-                                    @method("POST")
-                                    @csrf
-                                    <div class="modal-body">
-                                            <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Role</label>
-                                                <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control" name="name" type="text" placeholder="Masukan Role" value="" required>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>

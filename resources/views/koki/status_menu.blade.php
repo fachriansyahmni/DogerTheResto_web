@@ -41,12 +41,43 @@
 									<i class="dw dw-more"></i>
 								</a>
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-								<a class="dropdown-item" href="#" ><i class="dw dw-eye"></i> detail</a>
-								<a class="dropdown-item" href="#" ><i class="dw dw-pencil"></i> Ubah</a>
+								<a class="dropdown-item" href="#" data-toggle="modal" data-target="#detail-{{ $Menu->id }}"><i class="dw dw-eye"></i> detail</a>
+								<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit-{{ $Menu->id }}"><i class="dw dw-pencil"></i> Ubah</a>
 								</div>
 							</div>
 						</td>
 					</tr>
+
+					<div class="modal fade bs-example-modal-lg" id="edit-{{ $Menu->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myLargeModalLabel">Ubah Status</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <form action="{{route('chef-edit-status-menu',$Menu->id)}}" method="POST">
+                                    @method("POST")
+                                    @csrf
+                                    <div class="modal-body">
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-md-2 col-form-label">Role</label>
+                                                <div class="col-sm-12 col-md-10">
+                                                    <select name="menu_status" class="form-control">
+                                                    	@foreach (App\Menu::LISTMENUSTATUS as $menu_status)
+                                                    		<option value="{{$menu_status}}">{{$menu_status}}</option>
+                                                    	@endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 					@endforeach
 				</tbody>
 			</table>
