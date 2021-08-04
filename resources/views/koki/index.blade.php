@@ -25,6 +25,7 @@
 					</tr>
 				</thead>
 				<tbody>
+
                     @foreach ($Orders as $order)   
 					<tr class="list_pesanan" data-pid="{{$order->id}}">
 						<td class="table-plus">{{$order->id}}</td>
@@ -36,10 +37,39 @@
 									<i class="dw dw-more"></i>
 								</a>
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+								<a class="dropdown-item" href="#" ><i class="dw dw-eye" data-toggle="modal" data-target="#detail-{{ $order->id }}"></i> detail</a>
+								<a class="dropdown-item" href="#" ><i class="dw dw-pencil" data-toggle="modal" data-target="#edit-{{ $order->id }}"></i> Ubah</a>
 								</div>
 							</div>
 						</td>
 					</tr>
+
+                    <div class="modal fade bs-example-modal-lg" id="edit-{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myLargeModalLabel">Tambah Role</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <form action="{{ $order->id }}" method="POST">
+                                    @method("POST")
+                                    @csrf
+                                    <div class="modal-body">
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-md-2 col-form-label">Role</label>
+                                                <div class="col-sm-12 col-md-10">
+                                                    <input class="form-control" name="name" type="text" placeholder="Masukan Role" value="" required>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
 
 				</tbody>
