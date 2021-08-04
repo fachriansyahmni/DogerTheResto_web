@@ -64,15 +64,8 @@
                             <li>
                                 <a href="#">
                                     <img src="{{asset('vendor/deskapp/vendors/images/img.jpg')}}" alt="">
-                                    <h3>John Doe</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{asset('vendor/deskapp/vendors/images/photo1.jpg')}}" alt="">
-                                    <h3>Lea R. Frith</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+                                    <h3>Pesan</h3>
+                                    <p>Terdapat 0 Pesanan</p>
                                 </a>
                             </li>
                         </ul>

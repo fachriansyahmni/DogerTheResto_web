@@ -51,6 +51,13 @@
                 font-weight: 500;
                 font-size: 30px;
             }
+            .login-head {
+                font-family: "Pinyon Script", serif;
+                color: #FFA33E;
+                margin: 0;
+                padding: 0;
+                font-size: 80px;
+            }
             .login-body form button{
                 padding: 10px 30px 10px 30px;
                 color: whitesmoke;
@@ -99,12 +106,10 @@
         </nav>
         <section id="login-form">
             <div class="container">
-                <div class="login-header">
-                    Login
-                </div>
                 <div class="login-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        <center><h1 class="login-head">Login</h1></center>
                         <div class="input-item">
                             <input type="text" name="username" placeholder="Username" required value="{{ old('username') }}" required autocomplete="username" autofocus>
                         </div>
