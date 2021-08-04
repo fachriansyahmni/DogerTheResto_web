@@ -119,7 +119,7 @@
                         <p class="mb-30">Halaman daftar pesanan</p>
                     </div>
                     <div class="pull-right">
-                        <a href="#" data-toggle="modal" data-target="#export">Export</a>
+                        <a href="/cashier/export">Export</a> {{-- data-toggle="modal" data-target="#export" --}}
                     </div>
                 </div>
     
@@ -144,7 +144,7 @@
                         </tr>
 
                         {{-- modal view --}}
-                        <div class="modal fade show" id="Medium-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: block; padding-right: 17px;" aria-modal="true">
+                        {{-- <div class="modal fade show" id="Medium-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: block; padding-right: 17px;" aria-modal="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         @endforeach
                     </tbody>
                 </table>

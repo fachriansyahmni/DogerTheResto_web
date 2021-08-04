@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('title')
-    Homes
+    {{ $data->title }}
 @endsection
 
 @section('4card')
