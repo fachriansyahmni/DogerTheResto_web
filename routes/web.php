@@ -30,6 +30,8 @@ Route::get('/test', function () {
     return view('Berhasil');
 });
 
+Route::get("/detail-pesanan/{idpesanan}", 'OrderController@ajaxGetDetailPesanan');
+
 // for admin
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-'], function () {
     Route::get('/', 'AdminController@index')->name('index');
@@ -48,7 +50,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-
 });
 
 // for cashier
-Route::group(['prefix' => 'cashier', 'middleware' => 'role:cashier'], function () {
+Route::group(['prefix' => 'cashier', 'middleware' => 'role:kasir', 'as' => 'cashier-'], function () {
+    Route::get('/', 'HomeController@cashierIndex')->name('index');
+    Route::get('/receipt', 'CashierController@receiptIndex')->name('receipt-index');
+    Route::get('/laporan-penghasilan', 'OrderController@reportIndex')->name('report');
 });
 
 // for waiter

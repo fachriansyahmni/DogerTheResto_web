@@ -24,7 +24,13 @@
             </div>
         </div>
         <div class="col-lg-6">
-            <input id="filter_menu" type="text" class="form-control">
+            {{-- <input id="filter_menu" type="text" class="form-control"> --}}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" style="background: gainsboro">
+                  <span class="input-group-text" id="basic-addon1">Cari</span>
+                </div>
+                <input type="text" id="filter_menu" class="form-control" placeholder="Menu" aria-label="Search" aria-describedby="basic-addon1">
+              </div>              
         </div>
     </div>
     <div class="row" id="menu-list">
@@ -50,6 +56,26 @@
     <div class="fixed-bottom text-center" style="bottom: 10px">
         <div id="nota-content" class="mb-3 d-none" style="margin: 0 20%;">
             <div class="pd-20 border-rounded" style="display: grid; background-color: lightyellow; border-radius: 20px">
+                <div class="row">
+                    <div class="col-md-6">
+                        Pelayan : {{Auth::user()->name}}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-row">
+                            <div class="col-2">
+                                <label>Meja</label>
+                            </div>
+                            <div class="col-10">
+                                <select id="pilihMeja" class="selectpicker form-control form-control-sm" data-size="5" data-style="btn-outline-primary">
+                                    <option></option>
+                                    @foreach (App\Meja::where("status",1)->get() as $Meja)
+                                        <option value="{{$Meja->id}}" >{{$Meja->nomor_meja}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <table id="tbl_pesanan" class="mb-4 table table-borderless table-sm">
                     <thead>
                         <tr>
@@ -70,10 +96,11 @@
             </div>
         </div>
         <button class="btn btn-primary btn-lg" onclick="toggleNota()">konfirmasi</button>
-        <button class="btn btn-light btn-lg"><i class="icon-copy dw dw-shopping-cart"></i></button>
+        {{-- <button class="btn btn-light btn-lg"><i class="icon-copy dw dw-shopping-cart"></i></button> --}}
         <div class="d-none">
             <form action="{{route('konfir-pesanan')}}" id="fpesanan" method="POST">
                 @csrf
+                <input type="text" id="inputMeja" value="" name="noMeja">
             </form>
         </div>
     </div>
@@ -100,6 +127,10 @@
     function toggleNota(){
         $("#nota-content").toggleClass("d-none");
     }
+
+    $('#pilihMeja').on("change",function(){
+        $('#inputMeja').val(this.value);
+    });
 
     $('.btn-psn').click(function(e){
         e.preventDefault();

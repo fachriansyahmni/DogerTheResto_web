@@ -22,6 +22,12 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/deskapp/src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/deskapp/vendors/styles/style.css')}}">
 
+	<style>
+		.dropdown-toggle {
+			white-space: normal;
+		}
+	</style>
+
 	@stack('css')
 </head>
 <body>

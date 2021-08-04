@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pesanan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,6 +34,13 @@ class HomeController extends Controller
 
     public function chefIndex()
     {
-        return view('koki.index');
+        $Orders = Pesanan::where("status_pesanan", "Proses Ke Koki")->orderBy("tglpesan", "ASC")->get();
+        $compacts = ['Orders'];
+        return view('koki.index', compact($compacts));
+    }
+
+    public function cashierIndex()
+    {
+        return view('kasir.index');
     }
 }

@@ -29,7 +29,11 @@
 				<tbody>
 					@foreach ($AllMenu as $Menu)
 					<tr>
-						<td class="table-plus">{{$Menu}}</td>
+						<td class="table-plus">{{$Menu->nama}}</td>
+						<td class="table-plus">{{$Menu->harga}}</td>
+						<td class="table-plus">{{$Menu->menu_kategori_id}}</td>
+						<td class="table-plus">{{$Menu->stok}}</td>
+						<td class="table-plus">{{$Menu->menu_status}}</td>
 						<td class="table-plus"></td>
 						<td>
 							<div class="dropdown">
