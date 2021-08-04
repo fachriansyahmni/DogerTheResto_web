@@ -52,7 +52,7 @@
         "Koki" => [
             "Dashboard" => [
                 "has-sub" => false,
-                "url" => "home",
+                "url" => "chef-index",
                 "icon" => 'micon dw dw-house-1'
             ],
             "Pesanan" => [
