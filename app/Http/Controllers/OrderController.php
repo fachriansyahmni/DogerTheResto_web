@@ -73,7 +73,7 @@ class OrderController extends Controller
     }
     public function reportIndex()
     {
-        $AllOrders = Pesanan::whereMonth("tglpesan", '=', date("m"))->orderBy("created_at", "DESC")->get();
+        $AllOrders = NotaPesanan::whereMonth("tgl_pesan", '=', date("m"))->orderBy("created_at", "DESC")->get();
         // dd($AllOrders);
         $compacts = ['AllOrders'];
         return view("kasir.reports", compact($compacts));
@@ -84,7 +84,6 @@ class OrderController extends Controller
         $Pesanan = Pesanan::find($id);
         $returnHTML = view('mod.order.details-order')->with('Pesanan', $Pesanan)->render();
         return response()->json(['html' => $returnHTML]);
-
     }
 
     public function storeReceipt($idpesanan)
@@ -119,17 +118,17 @@ class OrderController extends Controller
     {
         // dd($request);
         if ($request->btn == "day") {
-            $AllOrders = Pesanan::whereDate("tglpesan", $request->date)->get();
+            $AllOrders = NotaPesanan::whereDate("tgl_pesan", $request->date)->get();
             $compacts = ['AllOrders'];
         } else if ($request->btn == "month") {
             $teks = explode("-", $request->date);
-            $AllOrders = Pesanan::whereMonth("tglpesan", $teks[1])->get();
+            $AllOrders = NotaPesanan::whereMonth("tgl_pesan", $teks[1])->get();
             $compacts = ['AllOrders'];
         } else if ($request->btn == "year") {
-            $AllOrders = DB::table('pesanans')->whereYear("tglpesan", $request->date)->get();
+            $AllOrders = NotaPesanan::whereYear("tgl_pesan", $request->date)->get();
             $compacts = ['AllOrders'];
         } else if ($request->btn == "custom") {
-            $AllOrders = Pesanan::whereRaw("date(tglpesan) >= date('$request->date2') AND date(tglpesan) <= date('$request->date1')")->orderBy("tglpesan", "DESC")->get();
+            $AllOrders = NotaPesanan::whereRaw("date(tgl_pesan) >= date('$request->date2') AND date(tgl_pesan) <= date('$request->date1')")->orderBy("tgl_pesan", "DESC")->get();
             $compacts = ['AllOrders'];
         }
 
