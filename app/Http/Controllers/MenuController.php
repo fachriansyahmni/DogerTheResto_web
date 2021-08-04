@@ -85,4 +85,11 @@ class MenuController extends Controller
         $Menu->save();
         return redirect()->back();
     }
+
+    public function allMenu()
+    {
+        $AllMenu = Menu::orderBy("created_at", "DESC")->get();
+        $compacts = ['AllMenu'];
+        return view("koki.status_menu", compact($compacts));
+    }
 }
