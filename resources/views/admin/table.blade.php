@@ -1,6 +1,6 @@
-@extends('admin.index')
+@extends('deskapp.dashboard')
 
-@section('second-card')
+@section('main-content')
 <div class="card-box mb-30">
     <div class="pd-20">
         <h4 class="text-blue h4">Data Meja</h4>
@@ -20,7 +20,7 @@
             <tbody>
                 <?php $i=1;; ?>
             @foreach ($tables as $table)
-                <tr role="row" class="even">
+                <tr role="row" >
                     <td class="table-plus sorting_1" tabindex="0"><?= $i; ?></td>
                     <td><?= $table->nomor_meja; ?></td>
                     <td><?= ($table->status == 1) ? "Tersedia" : "Tidak Tersedia"; ?></td>

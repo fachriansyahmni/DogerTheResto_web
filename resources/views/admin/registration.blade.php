@@ -1,10 +1,6 @@
-@extends('admin.index')
+@extends('deskapp.dashboard')
 
-@section('title')
-    Registration
-@endsection
-
-@section('4card')
+@section('main-content')
     {{-- kotak 4 --}}
     <div class="row">
         <div class="col-xl-3 mb-30">
@@ -61,57 +57,54 @@
         </div>
     </div>
 
-@endsection
-
-@section('content')
-    <div class="clearfix">
-        <div class="pull-left">
-            <h4 class="text-blue h4">Employee Registration</h4>
-            <p class="mb-30">All bootstrap element classies</p>
+    <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+        <div class="clearfix">
+            <div class="pull-left">
+                <h4 class="text-blue h4">Employee Registration</h4>
+                <p class="mb-30">All bootstrap element classies</p>
+            </div>
         </div>
+            
+        <form method="POST" action="/admin/registration">
+            @method('POST')
+            @csrf
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Username</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" type="text" name="username" placeholder="Username">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Name</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" name="name" placeholder="name" type="text">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Password</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" name="password" type="password" placeholder="Password" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Role</label>
+                <div class="col-sm-12 col-md-10">
+                    <select class="custom-select col-12" name="role">
+                        <option selected="">Choose...</option>
+                        @foreach (App\Role::get() as $role)
+                            <option value={{$role->id}}>{{$role->name}}</option>
+                            
+                        @endforeach
+                        {{-- <option value=5>Kasir</option>
+                        <option value=4>Koki</option>
+                        <option value=6>Owner</option> --}}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Registration</button>
+        </form>
     </div>
-        
-    <form method="POST" action="/admin/registration">
-        @method('POST')
-        @csrf
-        <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label">Username</label>
-            <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="text" name="username" placeholder="Username">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label">Name</label>
-            <div class="col-sm-12 col-md-10">
-                <input class="form-control" name="name" placeholder="name" type="text">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label">Password</label>
-            <div class="col-sm-12 col-md-10">
-                <input class="form-control" name="password" type="password" placeholder="Password" >
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label">Role</label>
-            <div class="col-sm-12 col-md-10">
-                <select class="custom-select col-12" name="role">
-                    <option selected="">Choose...</option>
-                    @foreach (App\Role::get() as $role)
-                        <option value={{$role->id}}>{{$role->name}}</option>
-                        
-                    @endforeach
-                    {{-- <option value=5>Kasir</option>
-                    <option value=4>Koki</option>
-                    <option value=6>Owner</option> --}}
-                </select>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Registration</button>
-    </form>
-@endsection
-
-@section('second-card')
+    
     <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
         <div class="clearfix">
             <div class="pull-left">
