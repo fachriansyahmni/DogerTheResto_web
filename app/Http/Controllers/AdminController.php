@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ItemNotaPesanan;
+use App\Menu;
+use App\NotaPesanan;
 use App\User;
 use App\Role;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +21,48 @@ class AdminController extends Controller
 
     public function index()
     {
+        $Nota = NotaPesanan::where('status_nota', "lunas");
+        $pendapatanMonth = 0;
+
+        $TransaksiMonthToday = $Nota->whereRaw('MONTH(tgl_bayar) = MONTH(now()) AND YEAR(tgl_bayar) = YEAR(NOW())')->get();
+        foreach ($TransaksiMonthToday as $ReceiptByMonth) {
+            $pendapatanMonth += $ReceiptByMonth->total_harga;
+        }
+
+        $ItemNota = ItemNotaPesanan::whereRaw('MONTH(created_at) = MONTH(now()) AND YEAR(created_at) = YEAR(NOW())')->get(["qty"]);
+        $ItemNota2 = ItemNotaPesanan::whereRaw('MONTH(created_at) = MONTH(now()- INTERVAL 1 MONTH)')->get(["qty"]);
+        $TotalMenuTerjual = 0;
+        $TotalMenuTerjual2 = 0;
+        foreach ($ItemNota as $totMenu) {
+            $TotalMenuTerjual += $totMenu->qty;
+        }
+        foreach ($ItemNota2 as $totMenu2) {
+            $TotalMenuTerjual2 += $totMenu2->qty;
+        }
+        $presentaseMenu = $TotalMenuTerjual2 / $TotalMenuTerjual * 100 / 100;
+        $compacts = ['pendapatanMonth', 'TotalMenuTerjual', 'presentaseMenu'];
+        $ListMenu = [];
+        $akhir = cal_days_in_month(CAL_GREGORIAN, date("m"), date("Y"));
+        // $thedate = date("Y-m-d",strtotime());
+        for ($i = 0; $i < $akhir; $i++) {
+            $thedate = date("Y-m-" . ($i + 1));
+
+            $totMenu = 0;
+            $im = ItemNotaPesanan::whereDate('created_at', $thedate)->get();
+            // $zzz[$i] = ;
+            foreach ($im as $bbb) {
+                $totMenu += $bbb->qty;
+            }
+            $ListMenu[$i] = ["tgl" => ($i + 1), "total_menu" => $totMenu];
+        }
+        // dd($ListMenu);
+
+        // foreach (Menu::where("visible", "1")->get() as $index => $menu) {
+        //     $ListMenu[$index] = ["nama_menu" => $menu->nama, "Qty" => 2];
+        // }
+        array_push($compacts, 'ListMenu');
         $data["page_title"] = "Dashboard";
-        return view('admin.home')->with($data);
+        return view('admin.index', compact($compacts))->with($data);
     }
 
     public function registration()
