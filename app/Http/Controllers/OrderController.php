@@ -9,6 +9,7 @@ use App\PesananItem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -72,6 +73,7 @@ class OrderController extends Controller
     public function reportIndex()
     {
         $AllOrders = Pesanan::whereMonth("tglpesan", '=', date("m"))->orderBy("created_at", "DESC")->get();
+        // dd($AllOrders);
         $compacts = ['AllOrders'];
         return view("kasir.reports", compact($compacts));
     }
@@ -81,5 +83,26 @@ class OrderController extends Controller
         $Pesanan = Pesanan::find($id);
         $returnHTML = view('mod.order.details-order')->with('Pesanan', $Pesanan)->render();
         return response()->json(['html' => $returnHTML]);
+    }
+
+    public function filter(Request $request)
+    {
+        // dd($request);
+        if ($request->btn == "day") {
+            $AllOrders = Pesanan::whereDate("tglpesan", $request->date)->get();
+            $compacts = ['AllOrders'];
+        } else if ($request->btn == "month") {
+            $teks = explode("-", $request->date);
+            $AllOrders = Pesanan::whereMonth("tglpesan", $teks[1])->get();
+            $compacts = ['AllOrders'];
+        } else if ($request->btn == "year") {
+            $AllOrders = DB::table('pesanans')->whereYear("tglpesan", $request->date)->get();
+            $compacts = ['AllOrders'];
+        } else if ($request->btn == "custom") {
+            $AllOrders = Pesanan::whereRaw("date(tglpesan) >= date('$request->date2') AND date(tglpesan) <= date('$request->date1')")->orderBy("tglpesan", "DESC")->get();
+            $compacts = ['AllOrders'];
+        }
+
+        return view("kasir.reports", compact($compacts));
     }
 }
