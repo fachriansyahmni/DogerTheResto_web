@@ -6,8 +6,8 @@
 		<div class="card-body">
 			<div class="clearfix">
 				<div class="pull-left">
-					<h4 class="text-blue h4">Daftar Pesanan</h4>
-					<p class="mb-30">Halaman daftar pesanan</p>
+					<h4 class="text-blue h4">Daftar Menu</h4>
+					<p class="mb-30">Halaman Daftar Menu</p>
 				</div>
 				{{-- <div class="pull-right">
 					<a href="#" data-toggle="modal" data-target="#addMenuKategori">Tambah Kategori</a>
@@ -17,18 +17,19 @@
 			<table class="data-table table stripe hover nowrap">
 				<thead>
 					<tr>
-						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
-						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
-						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
-						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
+						<th class="table-plus datatable-nosort">Nama Menu</th>
+						<th class="table-plus datatable-nosort">Harga</th>
+						<th class="table-plus datatable-nosort">Kategori</th>
+						<th class="table-plus datatable-nosort">Stok</th>
+						<th class="table-plus datatable-nosort">Status Menu</th>
 						<th></th>
 						<th class="datatable-nosort">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-
+					@foreach ($AllMenu as $Menu)
 					<tr>
-						<td class="table-plus"></td>
+						<td class="table-plus">{{$Menu}}</td>
 						<td class="table-plus"></td>
 						<td>
 							<div class="dropdown">
@@ -40,17 +41,11 @@
 							</div>
 						</td>
 					</tr>
-
+					@endforeach
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<br><br>
-	<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-        <center><b>Detail Pesanan</b></center><br>
-        <B>No Meja</B> : <p style="float:right"><b>Status</b> : Menunggu</p><br>
-        <b>Menu</b> <p style="float:right"><b>Tanggal</b> : DD-MM-YYYY</p>
-    </div>
 </div>
 @endsection
 
