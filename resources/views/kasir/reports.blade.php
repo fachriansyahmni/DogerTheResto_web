@@ -24,7 +24,8 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="harian" role="tabpanel">
                             <div class="pd-20">
-                                <form action="" method="get">
+                                <form action="/cashier/filter" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="" class="text-muted">Tanggal</label>
@@ -34,24 +35,71 @@
                                         </div>
                                     </div>
                                     <div class="form-group text-right mt-4 mb-0">
-                                        <button class="btn btn-primary" name="day" type="submit">cek</button>
+                                        <button class="btn btn-primary" name="btn" value="day" type="submit">cek</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="Bulanan" role="tabpanel">
                             <div class="pd-20">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <form action="/cashier/filter" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="" class="text-muted">Bulanan</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="month" name="date" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-right mt-4 mb-0">
+                                        <button class="btn btn-primary" name="btn" value="month" type="submit">cek</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="Tahunan" role="tabpanel">
                             <div class="pd-20">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <form action="/cashier/filter" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="" class="text-muted">Tahunan</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="year" name="date" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-right mt-4 mb-0">
+                                        <button class="btn btn-primary" name="btn" value="year" type="submit">cek</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="Custom" role="tabpanel">
                             <div class="pd-20">
-                               
+                                <form action="/cashier/filter" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="" class="text-muted">Tanggal Awal</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="date" name="date1" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="" class="text-muted">Tanggal Akhir</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="date" name="date2" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-right mt-4 mb-0">
+                                        <button class="btn btn-primary" name="btn" value="custom" type="submit">cek</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -78,24 +126,20 @@
                 <table class="data-table table stripe hover nowrap">
                     <thead>
                         <tr>
-                            <th class="table-plus datatable-nosort">Nomor Pesanan</th>
-                            <th></th>
+                            <th class="table-plus datatable-nosort">Tanggal Pesan</th>
+                            <th>Total Harga</th>
+                            <th>Status Nota</th>
                             <th class="datatable-nosort">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($AllOrders as $Order)
                         <tr>
-                            <td class="table-plus">{{$Order}}</td>
-                            <td class="table-plus"></td>
+                            <td class="table-plus">{{$Order->tgl_pesan}}</td>
+                            <td class="table-plus">{{ $Order->total_harga }}</td>
+                            <td class="table-plus">{{ $Order->status_nota }}</td>
                             <td>
-                                <div class="dropdown">
-                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                        <i class="dw dw-more"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    </div>
-                                </div>
+                                <a href="" class="btn btn-primary">View</a>
                             </td>
                         </tr>
                         @endforeach
