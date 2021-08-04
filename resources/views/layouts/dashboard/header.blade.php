@@ -64,15 +64,8 @@
                             <li>
                                 <a href="#">
                                     <img src="{{asset('vendor/deskapp/vendors/images/img.jpg')}}" alt="">
-                                    <h3>John Doe</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{asset('vendor/deskapp/vendors/images/photo1.jpg')}}" alt="">
-                                    <h3>Lea R. Frith</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+                                    <h3>Pesan</h3>
+                                    <p>Terdapat 0 Pesanan</p>
                                 </a>
                             </li>
                         </ul>
@@ -89,9 +82,9 @@
                     <span class="user-name">{{Auth::user()->username}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                    {{-- <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
                     <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a> --}}
                     <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"><i class="dw dw-logout"></i> Log Out</a>
 

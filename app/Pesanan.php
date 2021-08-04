@@ -20,4 +20,9 @@ class Pesanan extends Model
     {
         return $this->hasOne(Meja::class, 'id', 'nomor_meja');
     }
+
+    public function Pelayan()
+    {
+        return $this->hasOne(User::class, 'id', 'pelayan_id');
+    }
 }

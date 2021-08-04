@@ -31,7 +31,7 @@
                   <li><a href="#" data-nav-section="table">Table</a></li>
                   <li><a href="#" data-nav-section="menu">Menu</a></li>
                   <li><a href="#" data-nav-section="about">About</a></li>
-                  <li><a href="{{route('login')}}" data-nav-section="{{route('login')}}">Login</a></li>
+                  <li><a onclick="location.href = '{{route('login')}}';" href="#">Login</a></li>
                 </ul>
               </div>
             </div>
@@ -52,7 +52,7 @@
                   </div>
                 </div>
               </li>
-              <li style="background-image: url('{{asset('vendor/resto/img/hero_bg_2.jpg')}}')" class="overlay">
+              <li style="background-image: url('{{asset('vendor/resto/img/hero_bg_1.png')}}')" class="overlay">
                 <div class="container">
                   <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -115,65 +115,52 @@
             <div class="container">
               <div class="row">
                 <div class="probootstrap-cell-retro">
+                  @foreach (App\Menu::where("visible",1)->take(20)->get() as $index => $menu)
+                  @if ($index < 10)
                   <div class="half">
-      
-                    <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                      <div class="image" style="background-image: url(img/img_square_1.jpg);"></div>
-                      <div class="text text-center">
-                        <h3>Baked Potato Pizza</h3>
-                        <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                        <p class="price">$20.99</p>
-                      </div>
-                    </div>
-                    <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
-                      <div class="image" style="background-image: url(img/img_square_2.jpg);"></div>
-                      <div class="text text-center">
-                        <h3>Salted Fried Chicken</h3>
-                        <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                        <p class="price">$19.99</p>
-                      </div>
-                    </div>
-                    <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                      <div class="image" style="background-image: url(img/img_square_3.jpg);"></div>
-                      <div class="text text-center">
-                        <h3>Imported Salmon Steak</h3>
-                        <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                        <p class="price">$20.99</p>
-                      </div>
-                    </div>
-      
+                    @if ($index % 2 == 0)
+                        <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
+                          <div class="image" style="background-image: url({{asset($menu->gambar)}});"></div>
+                          <div class="text text-center">
+                            <h3>{{$menu->nama}}</h3>
+                            <p class="price">{{$menu->harga}}</p>
+                          </div>
+                        </div>
+                        @else
+                        <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
+                          <div class="image" style="background-image: url({{asset($menu->gambar)}});"></div>
+                          <div class="text text-center">
+                            <h3>{{$menu->nama}}</h3>
+                            <p class="price">{{$menu->harga}}</p>
+                          </div>
+                        </div>
+                        @endif
                   </div>
+                  @else
                   <div class="half">
-      
-                    <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                      <div class="image" style="background-image: url(img/img_square_4.jpg);"></div>
-                      <div class="text text-center">
-                        <h3>Roast Beef (4 sticks)</h3>
-                        <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                        <p class="price">$32.99</p>
-                      </div>
-                    </div>
-                    <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
-                      <div class="image" style="background-image: url(img/img_square_5.jpg);"></div>
-                      <div class="text text-center">
-                        <h3>Tuna Roast Source</h3>
-                        <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                        <p class="price">$25.99</p>
-                      </div>
-                    </div>
-                    <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                      <div class="image" style="background-image: url(img/img_square_1.jpg);"></div>
-                      <div class="text text-center">
-                        <h3>Fried Potatoes with Garlic</h3>
-                        <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                        <p class="price">$32.99</p>
-                      </div>
-                    </div>
-                    
+                    @if ($index % 2 == 0)
+                        <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
+                          <div class="image" style="background-image: url({{asset($menu->gambar)}});"></div>
+                          <div class="text text-center">
+                            <h3>{{$menu->nama}}</h3>
+                            <p class="price">{{$menu->harga}}</p>
+                          </div>
+                        </div>
+                        @else
+                        <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
+                          <div class="image" style="background-image: url({{asset($menu->gambar)}});"></div>
+                          <div class="text text-center">
+                            <h3>{{$menu->nama}}</h3>
+                            <p class="price">{{$menu->harga}}</p>
+                          </div>
+                        </div>
+                        @endif
                   </div>
+                  @endif
+                  @endforeach
                 </div>
               </div>
-              <div class="ahowallmenu"><a href="#">Lihat Semua</a></div>
+              <div class="ahowallmenu"><a href="/menu">Lihat Semua</a></div>
 
             </div>
           </section>
@@ -194,86 +181,14 @@
           <section class="probootstrap-section probootstrap-bg-white">
             <div class="container">
               <div class="row" style="text-align: -webkit-center;">
-                {{-- <div class="col-md-6">
-                  <ul class="menus">
-                    <li>
-                      <figure class="image"><img src="img/img_square_1.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-                      <div class="text">
-                        <span class="price">$22.99</span>
-                        <h3>Fried Potatoes with Garlic</h3>
-                        <p>Crab / Potatoes / Rice</p>
-                      </div>
-                    </li>
-                    <li>
-                      <figure class="image"><img src="img/img_square_2.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-                      <div class="text">
-                        <span class="price">$22.99</span>
-                        <h3>Tuna Roast Source</h3>
-                        <p>Crab / Potatoes / Rice</p>
-                      </div>
-                    </li>
-                    <li>
-                      <figure class="image"><img src="img/img_square_3.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-                      <div class="text">
-                        <span class="price">$22.99</span>
-                        <h3>Roast Beef (4 sticks)</h3>
-                        <p>Crab / Potatoes / Rice</p>
-                      </div>
-                    </li>
-                    <li>
-                      <figure class="image"><img src="img/img_square_4.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-                      <div class="text">
-                        <span class="price">$22.99</span>
-                        <h3>Salted Fried Chicken</h3>
-                        <p>Crab / Potatoes / Rice</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="menus">
-                    <li>
-                      <figure class="image"><img src="img/img_square_5.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-                      <div class="text">
-                        <span class="price">$22.99</span>
-                        <h3>Baked Potato Pizza</h3>
-                        <p>Crab / Potatoes / Rice</p>
-                      </div>
-                    </li>
-                    <li>
-                      <figure class="image"><img src="img/img_square_1.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-                      <div class="text">
-                        <span class="price">$22.99</span>
-                        <h3>Fried Potatoes with Garlic</h3>
-                        <p>Crab / Potatoes / Rice</p>
-                      </div>
-                    </li>
-                    <li>
-                      <figure class="image"><img src="img/img_square_2.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-                      <div class="text">
-                        <span class="price">$22.99</span>
-                        <h3>Salted Fried Chicken</h3>
-                        <p>Crab / Potatoes / Rice</p>
-                      </div>
-                    </li>
-                    <li>
-                      <figure class="image"><img src="img/img_square_3.jpg" alt="Free Bootstrap Template by uicookies.com"></figure>
-                      <div class="text">
-                        <span class="price">$22.99</span>
-                        <h3>Tuna Roast Source</h3>
-                        <p>Crab / Potatoes / Rice</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div> --}}
-                @for ($i = 0; $i < 16; $i++)
+                @foreach (App\Meja::get() as $meja)
                 <div class="col-md-3 col-xs-3">
                   <div class="tblPlace">
                     <img src="{{asset('vendor/resto/img/table.svg')}}" alt="">
-                    <span>05</span>
+                    <span>{{$meja->nomor_meja}}</span>
                   </div>
                 </div>
-                @endfor
+                @endforeach
               </div>
             </div>
           </section>
