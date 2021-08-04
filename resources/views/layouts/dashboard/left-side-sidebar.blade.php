@@ -46,7 +46,7 @@
             "Pemesanan Menu" => [
                 "has-sub" => false,
                 "url" => "waiter-pemesanan-index",
-                "icon" => 'micon dw dw-house-1'
+                "icon" => 'micon dw dw-invoice'
             ],
         ],
         "Koki" => [
