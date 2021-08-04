@@ -72,6 +72,7 @@ Route::group(['prefix' => 'chef', 'middleware' => 'role:koki', 'as' => 'chef-'],
     Route::get('/', 'HomeController@chefIndex')->name('index');
     Route::get('/daftar-pesanan', 'OrderController@listOrder')->name('order-list');
     Route::get('/status-menu', 'MenuController@AllMenu')->name('status-menu');
+    Route::post('/status-menu/edit/{id}', 'MenuController@editStatus')->name('edit-status-menu');
 });
 
 Route::group(['middleware' => 'auth'], function () {
