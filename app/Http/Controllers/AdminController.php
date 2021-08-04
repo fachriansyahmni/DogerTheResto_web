@@ -60,6 +60,7 @@ class AdminController extends Controller
             'username' => $request['username'],
             'name' => $request['name'],
             'password' => Hash::make($request['password']),
+            'role_id' => $request->role,
         ]);
 
         $user->assignRole($request['role']);
