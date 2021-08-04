@@ -37,7 +37,7 @@ class AdminController extends Controller
     {
         $user = User::find($request->id);
         $user->username = $request->username;
-        $user->email = $request->email;
+        $user->name = $request->name;
         $user->save();
 
         $role = DB::table('model_has_roles')
