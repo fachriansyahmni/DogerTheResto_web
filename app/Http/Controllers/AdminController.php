@@ -80,7 +80,7 @@ class AdminController extends Controller
     {
         $user = User::find($request->id);
         $user->username = $request->username;
-        $user->email = $request->email;
+        $user->name = $request->name;
         $user->save();
 
         $role = DB::table('model_has_roles')
@@ -103,6 +103,7 @@ class AdminController extends Controller
             'username' => $request['username'],
             'name' => $request['name'],
             'password' => Hash::make($request['password']),
+            'role_id' => $request->role,
         ]);
 
         $user->assignRole($request['role']);

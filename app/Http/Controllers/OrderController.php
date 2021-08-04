@@ -9,6 +9,8 @@ use App\NotaPesanan;
 use App\Pesanan;
 use App\PesananItem;
 use Carbon\Carbon;
+use App\Exports\NotaPesananExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -133,5 +135,10 @@ class OrderController extends Controller
         }
 
         return view("kasir.reports", compact($compacts));
+    }
+
+    public function export()
+    {
+        return Excel::download(new NotaPesananExport, 'laporan.xlsx');
     }
 }

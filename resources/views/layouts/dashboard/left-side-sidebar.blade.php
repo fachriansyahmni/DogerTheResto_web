@@ -9,32 +9,32 @@
             "Manajemen Data User" => [
                 "has-sub" => false,
                 "url" => "admin-registration",
-                "icon" => 'micon dw dw-shop'
+                "icon" => 'micon dw dw-group'
             ],
             "Manajemen Menu Makanan" => [
                 "has-sub" => false,
                 "url" => "manage.menu",
-                "icon" => 'micon dw dw-shop'
+                "icon" => 'micon dw dw-dinner'
             ],
             "Manajemen Menu Kategori" => [
                 "has-sub" => false,
                 "url" => "manage.menu-kategori",
-                "icon" => 'micon dw dw-shop'
+                "icon" => 'micon dw dw-invoice-1'
             ],
             // "Menu Kasir" => [
             //     "has-sub" => false,
             //     "url" => "home",
-            //     "icon" => 'micon dw dw-shop'
+            //     "icon" => 'micon dw dw-money-2'
             // ],
             "Manajemen Meja" => [
                 "has-sub" => false,
                 "url" => "manage.table",
-                "icon" => 'micon dw dw-shop'
+                "icon" => 'micon dw dw-billboard'
             ],
             "Manajemen Role" => [
                 "has-sub" => false,
                 "url" => "admin-role",
-                "icon" => 'micon dw dw-shop'
+                "icon" => 'micon dw dw-user-11'
             ]
         ],
         "Pelayan" => [
@@ -46,7 +46,7 @@
             "Pemesanan Menu" => [
                 "has-sub" => false,
                 "url" => "waiter-pemesanan-index",
-                "icon" => 'micon dw dw-house-1'
+                "icon" => 'micon dw dw-invoice'
             ],
         ],
         "Koki" => [
