@@ -57,29 +57,10 @@
             <div class="container">
               <div class="row">
                 <div class="probootstrap-cell-retro">
-                  @foreach (App\Menu::where("visible",1)->take(20)->get() as $index => $menu)
-                  @if ($index < 10)
+                  @foreach (App\Menu::where("visible",1)->get() as $index => $menu)
+                  @if ($index == 0 || $index == (count(App\Menu::where("visible",1)->get())/2))
                   <div class="half">
-                    @if ($index % 1 == 0)
-                        <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                          <div class="image" style="background-image: url({{asset($menu->gambar)}});"></div>
-                          <div class="text text-center">
-                            <h3>{{$menu->nama}}</h3>
-                            <p class="price">{{$menu->harga}}</p>
-                          </div>
-                        </div>
-                        @else
-                        <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
-                          <div class="image" style="background-image: url({{asset($menu->gambar)}});"></div>
-                          <div class="text text-center">
-                            <h3>{{$menu->nama}}</h3>
-                            <p class="price">{{$menu->harga}}</p>
-                          </div>
-                        </div>
-                        @endif
-                  </div>
-                  @else
-                  <div class="half">
+                  @endif
                     @if ($index % 2 == 0)
                         <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
                           <div class="image" style="background-image: url({{asset($menu->gambar)}});"></div>
@@ -97,6 +78,7 @@
                           </div>
                         </div>
                         @endif
+                  @if ($index == ((count(App\Menu::where("visible",1)->get())/2)-1) || $index == (count(App\Menu::where("visible",1)->get())))
                   </div>
                   @endif
                   @endforeach
