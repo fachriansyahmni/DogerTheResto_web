@@ -45,6 +45,7 @@ class HomeController extends Controller
 
     public function chefIndex()
     {
+        $data["page_title"] = "Dashboard Koki";
         $Orders = Pesanan::where("status_pesanan", "Proses Ke Koki")->orWhere("status_pesanan", "Proses Masak")->orderBy("tglpesan", "ASC")->get();
         $compacts = ['Orders'];
         return view('koki.index', compact($compacts));
@@ -52,6 +53,7 @@ class HomeController extends Controller
 
     public function cashierIndex()
     {
+        $data["page_title"] = "Dashboard Kasir";
         $Nota = NotaPesanan::where('status_nota', "lunas");
         $Nota2 = NotaPesanan::where('status_nota', "lunas");
         $pendapatanToday = 0;

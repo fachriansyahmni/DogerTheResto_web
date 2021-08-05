@@ -29,9 +29,6 @@ class AdminController extends Controller
         foreach ($TransaksiMonthToday as $ReceiptByMonth) {
             $pendapatanMonth += $ReceiptByMonth->total_harga;
         }
-
-        // $bb = PesananItem::select(['menu_id', DB::raw('SUM(qty) as total')])->whereRaw('MONTH(created_at) = MONTH(now()) AND YEAR(created_at) = YEAR(NOW())')->groupBy('menu_id')->get();
-        // dd($bb);
         $ItemNota = ItemNotaPesanan::whereRaw('MONTH(created_at) = MONTH(now()) AND YEAR(created_at) = YEAR(NOW())')->get();
         $ItemNota2 = ItemNotaPesanan::whereRaw('MONTH(created_at) = MONTH(now()- INTERVAL 1 MONTH)')->get();
         $TotalMenuTerjual = 0;
@@ -48,10 +45,7 @@ class AdminController extends Controller
             $presentaseMenu = $TotalMenuTerjual2 / $TotalMenuTerjual * 100 / 100;
         }
         $compacts = ['pendapatanMonth', 'TotalMenuTerjual', 'presentaseMenu'];
-        $akhir = cal_days_in_month(CAL_GREGORIAN, date("m"), date("Y"));
         $thedate = date("Y-m-d", time());
-        // for ($i = 0; $i < $akhir; $i++) {
-        //     $thedate = date("Y-m-" . ($i + 1));
 
         $totMenu = 0;
         $im = PesananItem::select(['menu_id', DB::raw('SUM(qty) as total')])->whereDate('created_at', $thedate)->groupBy('menu_id')->get();
@@ -59,15 +53,6 @@ class AdminController extends Controller
         foreach ($im as $index => $bbb) {
             $ListMenu[$index] = ["tgl" => $thedate, "nama_menu" => $bbb->dMenu->nama, "qty" => $bbb->total];
         }
-        // $ListMenu[$i] = ["tgl" => ($i + 1), "total_menu" => $totMenu];
-        // $ListMenu[$i] = $im;
-        // }
-        // dd($ListMenu);
-        // dd($ListMenu);
-
-        // foreach (Menu::where("visible", "1")->get() as $index => $menu) {
-        //     $ListMenu[$index] = ["nama_menu" => $menu->nama, "Qty" => 2];
-        // }
         array_push($compacts, 'ListMenu');
         $data["page_title"] = "Dashboard";
         return view('admin.index', compact($compacts))->with($data);
@@ -75,13 +60,14 @@ class AdminController extends Controller
 
     public function registration()
     {
+        $data["page_title"] = "Manajemen Pengguna";
         $users = DB::table('model_has_roles')
             ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
             ->join('users', 'model_has_roles.model_id', '=', 'users.id')
             ->select('users.*', 'roles.name as role')
             ->get();
         // dd($users);
-        return view('admin.registration', compact('users'));
+        return view('admin.registration', compact('users'))->with($data);
     }
 
     public function edit(Request $request)
@@ -133,7 +119,8 @@ class AdminController extends Controller
     public function Role()
     {
         $roles = Role::get();
-        return view("admin.role", compact('roles'));
+        $data["page_title"] = "Manajemen Roles";
+        return view("admin.role", compact('roles'))->with($data);
     }
 
     public function roleSave(Request $request)

@@ -1,43 +1,6 @@
 <div class="header">
     <div class="header-left" style="width: 75%">
         <div class="menu-icon dw dw-menu"></div>
-        {{-- <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
-        <div class="header-search">
-            <form>
-                <div class="form-group mb-0">
-                    <i class="dw dw-search2 search-icon"></i>
-                    <input type="text" class="form-control search-input" placeholder="Search Here">
-                    <div class="dropdown">
-                        <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-                            <i class="ion-arrow-down-c"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-md-2 col-form-label">From</label>
-                                <div class="col-sm-12 col-md-10">
-                                    <input class="form-control form-control-sm form-control-line" type="text">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-md-2 col-form-label">To</label>
-                                <div class="col-sm-12 col-md-10">
-                                    <input class="form-control form-control-sm form-control-line" type="text">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-md-2 col-form-label">Subject</label>
-                                <div class="col-sm-12 col-md-10">
-                                    <input class="form-control form-control-sm form-control-line" type="text">
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <button class="btn btn-primary">Search</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div> --}}
         <div class="text-center" style="width: 100%">
             @isset($page_title)
             <strong>{{$page_title}}</strong>
@@ -45,13 +8,6 @@
         </div>
     </div>
     <div class="header-right" style="width: 25%">
-        {{-- <div class="dashboard-setting user-notification">
-            <div class="dropdown">
-                <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
-                    <i class="dw dw-settings2"></i>
-                </a>
-            </div>
-        </div> --}}
         <div class="user-notification">
             <div class="dropdown">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
@@ -63,7 +19,7 @@
                         <ul>
                             <li>
                                 <a href="#">
-                                    <img src="{{asset('vendor/deskapp/vendors/images/img.jpg')}}" alt="">
+                                    <img src="{{asset('vendor/deskapp/vendors/images/gambar_icon.png')}}" alt="">
                                     <h3>Pesan</h3>
                                     <p>Terdapat 0 Pesanan</p>
                                 </a>
@@ -77,7 +33,7 @@
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                     <span class="user-icon">
-                        <img src="{{asset('vendor/deskapp/vendors/images/photo1.jpg')}}" alt="">
+                        <img src="{{asset('vendor/deskapp/vendors/images/gambar_icon.png')}}" alt="">
                     </span>
                     <span class="user-name">{{Auth::user()->username}}</span>
                 </a>

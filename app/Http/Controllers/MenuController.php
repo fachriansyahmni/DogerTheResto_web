@@ -89,15 +89,16 @@ class MenuController extends Controller
     public function editStatus(Request $request, $idmenu)
     {
         $Menu = Menu::find($idmenu);
-        $Menu->menu_status = $request->menu_status;$Menu->save();
+        $Menu->menu_status = $request->menu_status;
+        $Menu->save();
         return redirect()->back();
     }
 
     public function allMenu()
     {
+        $data["page_title"] = "Status Menu";
         $AllMenu = Menu::orderBy("created_at", "DESC")->get();
         $compacts = ['AllMenu'];
-        return view("koki.status_menu", compact($compacts));
+        return view("koki.status_menu", compact($compacts))->with($data);
     }
-
 }

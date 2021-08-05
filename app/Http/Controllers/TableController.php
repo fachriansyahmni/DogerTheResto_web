@@ -10,7 +10,8 @@ class TableController extends Controller
     public function manageTable()
     {
         $tables = Meja::get();
-        return view('admin.table', compact('tables'));
+        $data["page_title"] = "Manajemen Meja";
+        return view('admin.table', compact('tables'))->with($data);
     }
 
     public function save(Request $request)

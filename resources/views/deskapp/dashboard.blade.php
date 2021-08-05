@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Doger Resto</title>
+	<title>{{ config('app.name', 'Doger Resto') }}</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('vendor/deskapp/vendors/images/apple-touch-icon.png') }}">
@@ -35,7 +35,7 @@
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src=" {{ asset('/vendor/deskapp/vendors/images/deskapp-logo.png') }}" alt=""></div>
 			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
+				<div class='bar' style="background: #FFA33E" id='bar1'></div>
 			</div>
 			<div class='percent' id='percent1'>0%</div>
 			<div class="loading-text">

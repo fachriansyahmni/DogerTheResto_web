@@ -73,13 +73,14 @@ class OrderController extends Controller
 
     public function listOrder()
     {
+        $data["page_title"] = "Daftar Pesanan";
         $AllOrders = Pesanan::orderBy("created_at", "DESC")->get();
         $compacts = ['AllOrders'];
-        return view("mod.order.list_order", compact($compacts));
+        return view("mod.order.list_order", compact($compacts))->with($data);
     }
     public function reportIndex()
     {
-
+        $data["page_title"] = "Laporan Penghasilan";
         $thedate = date("Y-m-d", time());
         $im = PesananItem::select(['menu_id', DB::raw('SUM(qty) as total')])->whereDate('created_at', $thedate)->groupBy('menu_id')->get();
         $ListMenu = [];
@@ -90,7 +91,7 @@ class OrderController extends Controller
         $AllOrders = NotaPesanan::whereMonth("tgl_pesan", '=', date("m"))->orderBy("created_at", "DESC")->get();
         // dd($AllOrders);
         $compacts = ['AllOrders', "ListMenu"];
-        return view("kasir.reports", compact($compacts));
+        return view("kasir.reports", compact($compacts))->with($data);
     }
 
     public function ajaxGetDetailPesanan($id)

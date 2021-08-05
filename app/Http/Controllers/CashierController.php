@@ -10,15 +10,17 @@ class CashierController extends Controller
 {
     public function receiptIndex()
     {
+        $data["page_title"] = "Data Struk Pesanan";
         $Receipts = NotaPesanan::orderBy("id", "DESC")->get();
         $AllOrders = Pesanan::where("status_pesanan", '!=', "Lunas")->orderBy("created_at", "DESC")->get();
 
         $compacts = ['Receipts', 'AllOrders'];
-        return view("kasir.receipt", compact($compacts));
+        return view("kasir.receipt", compact($compacts))->with($data);
     }
 
     public function reportIndex()
     {
-        return view('kasir.report');
+        $data["page_title"] = "Data Struk Pesanan";
+        return view('kasir.report')->with($data);
     }
 }
