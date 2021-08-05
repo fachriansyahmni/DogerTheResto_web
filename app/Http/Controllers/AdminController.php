@@ -42,7 +42,11 @@ class AdminController extends Controller
         foreach ($ItemNota2 as $totMenu2) {
             $TotalMenuTerjual2 += $totMenu2->qty;
         }
-        $presentaseMenu = $TotalMenuTerjual2 / $TotalMenuTerjual * 100 / 100;
+        if (count($ItemNota) == 0 || count($ItemNota2) == 0) {
+            $presentaseMenu = 0;
+        } else {
+            $presentaseMenu = $TotalMenuTerjual2 / $TotalMenuTerjual * 100 / 100;
+        }
         $compacts = ['pendapatanMonth', 'TotalMenuTerjual', 'presentaseMenu'];
         $ListMenu = [];
         $akhir = cal_days_in_month(CAL_GREGORIAN, date("m"), date("Y"));

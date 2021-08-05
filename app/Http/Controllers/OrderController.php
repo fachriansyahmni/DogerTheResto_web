@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    public $kondisi;
+    public $param1;
+    public $param2;
+
     public function pemesananIndex()
     {
         $data["page_title"] = "Pemesanan Menu";
@@ -134,6 +138,7 @@ class OrderController extends Controller
     {
         // dd($request);
         if ($request->btn == "day") {
+            $kondisi = $request->btn;
             $AllOrders = NotaPesanan::whereDate("tgl_pesan", $request->date)->get();
             $compacts = ['AllOrders'];
         } else if ($request->btn == "month") {
@@ -154,5 +159,11 @@ class OrderController extends Controller
     public function export()
     {
         return Excel::download(new NotaPesananExport, 'laporan.xlsx');
+    }
+
+    public function cetak()
+    {
+        dd($this->kondisi);
+        return 0;
     }
 }
