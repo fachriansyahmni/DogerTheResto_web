@@ -32,6 +32,51 @@
                 </div>
             </div>
         </div>
+        @if (count($OrderReady) > 0)
+        <div class="alert alert-danger" role="alert">
+            Terdapat <b>{{count($OrderReady)}} Pesanan Siap Diantar!</b>
+        </div>
+        <div class="card mb-30">
+            <div class="card-body">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">Daftar Pesanan Siap Antar</h4>
+                        <p class="mb-30">Halaman daftar pesanan</p>
+                    </div>
+                </div>
+    
+               <div class="table-responsive">
+                <table class="data-table table stripe hover nowrap">
+                    <thead>
+                        <tr>
+                            <th>Nomor Pesanan</th>
+                            <th class="">No Meja</th>
+                            <th class="">Status</th>
+                            <th class="datatable-nosort">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($OrderReady as $order)   
+                        <tr class="list_pesanan" data-pid="{{$order->id}}">
+                            <td>{{$order->id}}</td>
+                            <td>{{$order->nomor_meja}}</td>
+                            <td>{{$order->status_pesanan}}</td>
+                            <td>
+                                <form action="{{route('change-process',$order->id)}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="Selesai" name="status">
+                                    <button class="btn btn-success" type="submit">Selesai Diantar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+    
+                    </tbody>
+                </table>
+               </div>
+            </div>
+        </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <div class="clearfix">

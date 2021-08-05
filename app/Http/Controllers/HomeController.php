@@ -35,14 +35,15 @@ class HomeController extends Controller
     {
         $data["page_title"] = "Dashboard Pelayan";
         $AllOrders = Pesanan::orderBy("id", "DESC")->get();
+        $OrderReady = Pesanan::where("status_pesanan", "Siap Diantar")->orderBy("id", "ASC")->get();
         $AllMeja = Meja::get();
-        $compacts = ['AllOrders', 'AllMeja'];
+        $compacts = ['AllOrders', 'AllMeja', 'OrderReady'];
         return view('pelayan.index', compact($compacts))->with($data);
     }
 
     public function chefIndex()
     {
-        $Orders = Pesanan::where("status_pesanan", "Proses Ke Koki")->orderBy("tglpesan", "ASC")->get();
+        $Orders = Pesanan::where("status_pesanan", "Proses Ke Koki")->orWhere("status_pesanan", "Proses Masak")->orderBy("tglpesan", "ASC")->get();
         $compacts = ['Orders'];
         return view('koki.index', compact($compacts));
     }
