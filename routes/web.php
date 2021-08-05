@@ -52,6 +52,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-
     Route::get('/role/delete/{id}', 'AdminController@roleDelete')->name('role-delete');
 });
 
+Route::get('/cetak', 'OrderController@cetak');
+
 // for cashier
 Route::group(['prefix' => 'cashier', 'middleware' => 'role:kasir', 'as' => 'cashier-'], function () {
     Route::get('/', 'HomeController@cashierIndex')->name('index');
