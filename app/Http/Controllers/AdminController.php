@@ -48,7 +48,6 @@ class AdminController extends Controller
             $presentaseMenu = $TotalMenuTerjual2 / $TotalMenuTerjual * 100 / 100;
         }
         $compacts = ['pendapatanMonth', 'TotalMenuTerjual', 'presentaseMenu'];
-        $ListMenu = [];
         $akhir = cal_days_in_month(CAL_GREGORIAN, date("m"), date("Y"));
         $thedate = date("Y-m-d", time());
         // for ($i = 0; $i < $akhir; $i++) {
@@ -56,8 +55,6 @@ class AdminController extends Controller
 
         $totMenu = 0;
         $im = PesananItem::select(['menu_id', DB::raw('SUM(qty) as total')])->whereDate('created_at', $thedate)->groupBy('menu_id')->get();
-        // $zzz[$i] = ;
-        // dd($im);
         $ListMenu = [];
         foreach ($im as $index => $bbb) {
             $ListMenu[$index] = ["tgl" => $thedate, "nama_menu" => $bbb->dMenu->nama, "qty" => $bbb->total];
