@@ -135,31 +135,45 @@ class OrderController extends Controller
         // dd($request);
         if ($request->btn == "day") {
             $kondisi = $request->btn;
+            $param1 = $request->date;
+            // dd($this->param1);
             $AllOrders = NotaPesanan::whereDate("tgl_pesan", $request->date)->get();
-            $compacts = ['AllOrders'];
+            $compacts = ['AllOrders', 'kondisi', 'param1'];
         } else if ($request->btn == "month") {
+            $kondisi = $request->btn;
+            $param1 = $request->date;
             $teks = explode("-", $request->date);
             $AllOrders = NotaPesanan::whereMonth("tgl_pesan", $teks[1])->get();
-            $compacts = ['AllOrders'];
+            $compacts = ['AllOrders', 'kondisi', 'param1'];
         } else if ($request->btn == "year") {
+            $kondisi = $request->btn;
+            $param1 = $request->date;
             $AllOrders = NotaPesanan::whereYear("tgl_pesan", $request->date)->get();
-            $compacts = ['AllOrders'];
+            $compacts = ['AllOrders', 'kondisi', 'param1'];
         } else if ($request->btn == "custom") {
+            $kondisi = $request->btn;
+            $param1 = $request->date1;
+            $param2 = $request->date2;
             $AllOrders = NotaPesanan::whereRaw("date(tgl_pesan) >= date('$request->date2') AND date(tgl_pesan) <= date('$request->date1')")->orderBy("tgl_pesan", "DESC")->get();
-            $compacts = ['AllOrders'];
+            $compacts = ['AllOrders', 'kondisi', 'param1', 'param2'];
         }
 
         return view("kasir.reports", compact($compacts));
     }
 
-    public function export()
+    public function getKondisi()
     {
-        return Excel::download(new NotaPesananExport, 'laporan.xlsx');
+        return $this->kondisi;
+    }
+
+    public function export(Request $request)
+    {
+        // dd($this->getKondisi());
+        return Excel::download(new NotaPesananExport($request->kondisi, $request->param1, $request->param2), 'laporan.xlsx');
     }
 
     public function cetak()
     {
-        dd($this->kondisi);
-        return 0;
+        echo $this->kondisi;
     }
 }
