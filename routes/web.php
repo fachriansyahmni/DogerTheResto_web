@@ -61,7 +61,7 @@ Route::group(['prefix' => 'cashier', 'middleware' => 'role:kasir', 'as' => 'cash
     Route::get('/receipt', 'CashierController@receiptIndex')->name('receipt-index');
     Route::get('/laporan-penghasilan', 'OrderController@reportIndex')->name('report');
     Route::post('/filter', 'OrderController@filter')->name('filter');
-    Route::get('/export', 'OrderController@export')->name('export');
+    Route::post('/export', 'OrderController@export')->name('export');
 });
 
 // for waiter

@@ -19,6 +19,7 @@
 					<tr>
 						<th class="">Nomor Pesanan</th>
 						<th class="">Total Menu</th>
+						<th class="">Nomor Meja</th>
 						<th class="">Tanggal Pesan</th>
 						<th class="">Status Menu</th>
 
@@ -31,6 +32,7 @@
 					<tr class="list_pesanan" data-pid="{{$order->id}}">
 						<td class="table-plus">{{$order->id}}</td>
                         <td>{{count($order->pesananItems)}}</td>
+                        <td>{{$order->nomor_meja}}</td>
                         <td>{{$order->tglpesan}}</td>
                         <td>{{$order->status_pesanan}}</td>
 						<td>
@@ -39,23 +41,11 @@
 									<i class="dw dw-more"></i>
 								</a>
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-								<a class="dropdown-item" href="#" ><i class="dw dw-eye" data-toggle="modal" data-target="#detail-{{ $order->id }}"></i> detail</a>
-								<a class="dropdown-item" href="#" ><i class="dw dw-pencil" data-toggle="modal" data-target="#edit-{{ $order->id }}"></i> Ubah</a>
+								<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> detail</a>
 								</div>
 							</div>
 						</td>
 					</tr>
-
-                    <div class="modal fade bs-example-modal-lg" id="edit-{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="myLargeModalLabel">Tambah Role</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     @endforeach
 
 				</tbody>

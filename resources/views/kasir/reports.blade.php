@@ -119,7 +119,54 @@
                         <p class="mb-30">Halaman daftar pesanan</p>
                     </div>
                     <div class="pull-right">
-                        <a href="/cashier/export">Export</a> {{-- data-toggle="modal" data-target="#export" --}}
+                        <a href="#" onclick="submitForm()">Export</a> {{-- data-toggle="modal" data-target="#export" --}}
+                        @isset($kondisi)
+                            @switch($kondisi)
+                                @case("day")
+                                        <form action="/cashier/export" class="d-none" method="POST" id="formFilter">
+                                            @csrf
+                                            <input type="text" value="{{ $kondisi }}" name="kondisi" id="">
+                                            <input type="text" value="{{ $param1 }}" name="param1">
+                                            {{-- <button type="submit">Submit</button> --}}
+                                        </form>
+                                    @break
+                                @case("month")
+                                        <form action="/cashier/export" class="d-none" method="POST" id="formFilter">
+                                            @csrf
+                                            <input type="text" value="{{ $kondisi }}" name="kondisi" id="">
+                                            <input type="text" value="{{ $param1 }}" name="param1">
+                                            {{-- <button type="submit">Submit</button> --}}
+                                        </form>
+                                    @break
+                                @case("month")
+                                        <form action="/cashier/export" class="d-none" method="POST" id="formFilter">
+                                            @csrf
+                                            <input type="text" value="{{ $kondisi }}" name="kondisi" id="">
+                                            <input type="text" value="{{ $param1 }}" name="param1">
+                                            {{-- <button type="submit">Submit</button> --}}
+                                        </form>
+                                    @break
+                                @case("year")
+                                        <form action="/cashier/export" class="d-none" method="POST" id="formFilter">
+                                            @csrf
+                                            <input type="text" value="{{ $kondisi }}" name="kondisi" id="">
+                                            <input type="text" value="{{ $param1 }}" name="param1">
+                                            {{-- <button type="submit">Submit</button> --}}
+                                        </form>
+                                    @break
+                                @case("custom")
+                                    <form action="/cashier/export" class="d-none" method="POST" id="formFilter">
+                                        @csrf
+                                        <input type="text" value="{{ $kondisi }}" name="kondisi" id="">
+                                        <input type="text" value="{{ $param1 }}" name="param1">
+                                        <input type="text" value="{{ $param2 }}" name="param2">
+                                        {{-- <button type="submit">Submit</button> --}}
+                                    </form>
+                                @break
+                                @default
+                                    
+                            @endswitch
+                        @endisset
                     </div>
                 </div>
     
@@ -182,4 +229,9 @@
 	<script src="{{asset('vendor/deskapp/src/plugins/apexcharts/apexcharts.min.js')}}"></script>
 	<script src="{{asset('vendor/deskapp/vendors/scripts/apexcharts-setting.js')}}"></script>
 	<script src="{{asset('vendor/deskapp/vendors/scripts/datatable-setting.js')}}"></script>
+    <script>
+        function submitForm() {
+            $("#formFilter").submit();
+        }
+    </script>
 @endpush
