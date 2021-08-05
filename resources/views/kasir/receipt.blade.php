@@ -2,6 +2,11 @@
 
 @section('main-content')
 <div class="container-fluid">
+    @if (count($AllOrders) > 0)
+    <div class="alert alert-danger" role="alert">
+        Terdapat <b>{{count($AllOrders)}} Pesanan Belum Bayar!</b>
+    </div>
+    @endif
     <div class="card">
 		<div class="card-body">
 			<div class="clearfix">

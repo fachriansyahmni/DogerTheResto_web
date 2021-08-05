@@ -123,6 +123,10 @@ class OrderController extends Controller
         }
         $Pesanan->status_pesanan = "LUNAS";
         $Pesanan->save();
+
+        $Meja = Meja::find($Pesanan->nomor_meja);
+        $Meja->status = 1;
+        $Meja->save();
         return redirect()->back();
     }
 

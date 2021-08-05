@@ -60,8 +60,9 @@
 <div class="row">
     <div class="col-md-8 mb-20">
         <div class="bg-white pd-20 card-box mb-30">
-            <h4 class="h4 text-blue">Menu Terlaris Bulan ${bulan}</h4>
+            <h4 class="h4 text-blue">Daftar Menu Terjual Hari Ini</h4>
             <div id="chartMenuTerlaris"></div>
+            {{-- <div id="chart4"></div> --}}
         </div>
     </div>
     <div class="col-md-4 mb-20">
@@ -99,23 +100,30 @@
         console.log(listMenu);
         var serisData = [];
         listMenu.forEach(element => {
-            // console.log(element);
-            serisData.push({name: element.tgl, data: [element.total_menu]});
+            // var pushData = [];
+            // element.forEach(element2 => {
+            // // console.log(element2);
+            //     pushData.push({name:element2.nama_menu,qty:element2.qty});
+            // });
+            serisData.push({tgl: element.tgl,name:element.nama_menu,data:[element.qty]});
+            console.log(element.qty);
         });
         // for(var i = 1; i <= listMenu.length)
-        console.log(serisData);
+        // console.log(serisData);
         var optionsmtl = {
             series: 
             // [{
             //     name: 'Net Profit',
-            //     data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-            // }, {
+            //     data: [44,22]
+            // }, 
+            // {
             //     name: 'Revenue',
-            //     data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+            //     data: [76,66]
             // }, {
             //     name: 'Free Cash Flow',
-            //     data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-            // }],
+            //     data: [35,91]
+            // }
+            // ],
             serisData,
             chart: {
                 type: 'bar',
@@ -139,9 +147,9 @@
                 width: 2,
                 colors: ['transparent']
             },
-            // xaxis: {
-            //     categories: listMenu,
-            // },
+            xaxis: {
+                categories: [serisData[0].tgl],
+            },
             yaxis: {
                 title: {
                     text: 'Total Menu'
@@ -153,11 +161,11 @@
             tooltip: {
                 y: {
                     formatter: function (val) {
-                        return "$" + val + "thousands"
+                        return val + " qty"
                     }
                 }
             }
-        };
+        }
         var chart = new ApexCharts(document.querySelector("#chartMenuTerlaris"), optionsmtl);
         chart.render();
     </script>
