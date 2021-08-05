@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Meja;
 use App\NotaPesanan;
 use App\Pesanan;
+use App\PesananItem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {

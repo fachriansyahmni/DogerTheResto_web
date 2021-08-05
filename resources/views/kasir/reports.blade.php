@@ -108,8 +108,8 @@
         </div>
     </div>
     <div class="bg-white pd-20 card-box mb-30">
-            <h4 class="h4 text-blue">Menu Terlaris Bulan ${bulan}</h4>
-            <div id="chart3"></div>
+        <h4 class="h4 text-blue">Daftar Menu Terjual Hari Ini</h4>
+        <div id="chartMenuTerlaris"></div>
     </div>
     <div class="card">
             <div class="card-body">
@@ -233,5 +233,59 @@
         function submitForm() {
             $("#formFilter").submit();
         }
+        
+        var listMenu = <?php echo json_encode($ListMenu); ?>; 
+        console.log(listMenu);
+        var serisData = [];
+        listMenu.forEach(element => {
+            serisData.push({tgl: element.tgl,name:element.nama_menu,data:[element.qty]});
+            console.log(element.qty);
+        });
+        var optionsmtl = {
+            series: 
+            serisData,
+            chart: {
+                type: 'bar',
+                height: 350,
+                toolbar: {
+                    show: false,
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '25%',
+                    endingShape: 'rounded'
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ['transparent']
+            },
+            xaxis: {
+                categories: [serisData[0].tgl],
+            },
+            yaxis: {
+                title: {
+                    text: 'Total Menu'
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val + " qty"
+                    }
+                }
+            }
+        }
+        var chart = new ApexCharts(document.querySelector("#chartMenuTerlaris"), optionsmtl);
+        chart.render();
     </script>
 @endpush

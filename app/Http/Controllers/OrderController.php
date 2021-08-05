@@ -79,9 +79,17 @@ class OrderController extends Controller
     }
     public function reportIndex()
     {
+
+        $thedate = date("Y-m-d", time());
+        $im = PesananItem::select(['menu_id', DB::raw('SUM(qty) as total')])->whereDate('created_at', $thedate)->groupBy('menu_id')->get();
+        $ListMenu = [];
+        foreach ($im as $index => $bbb) {
+            $ListMenu[$index] = ["tgl" => $thedate, "nama_menu" => $bbb->dMenu->nama, "qty" => $bbb->total];
+        }
+
         $AllOrders = NotaPesanan::whereMonth("tgl_pesan", '=', date("m"))->orderBy("created_at", "DESC")->get();
         // dd($AllOrders);
-        $compacts = ['AllOrders'];
+        $compacts = ['AllOrders', "ListMenu"];
         return view("kasir.reports", compact($compacts));
     }
 
