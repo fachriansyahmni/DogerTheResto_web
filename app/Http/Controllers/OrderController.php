@@ -171,6 +171,13 @@ class OrderController extends Controller
             $compacts = ['AllOrders', 'kondisi', 'param1', 'param2'];
         }
 
+        $thedate = date("Y-m-d", time());
+        $im = PesananItem::select(['menu_id', DB::raw('SUM(qty) as total')])->whereDate('created_at', $thedate)->groupBy('menu_id')->get();
+        $ListMenu = [];
+        foreach ($im as $index => $bbb) {
+            $ListMenu[$index] = ["tgl" => $thedate, "nama_menu" => $bbb->dMenu->nama, "qty" => $bbb->total];
+        }
+        array_push($compacts, 'ListMenu');
         return view("kasir.reports", compact($compacts));
     }
 
