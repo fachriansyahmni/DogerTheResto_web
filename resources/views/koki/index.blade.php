@@ -17,9 +17,10 @@
 			<table class="data-table table stripe hover nowrap">
 				<thead>
 					<tr>
-						<th class="table-plus datatable-nosort">Nomor Pesanan</th>
-						<th class="table-plus datatable-nosort">Total Menu</th>
-						<th class="table-plus datatable-nosort">Tanggal Pesan</th>
+						<th class="">Nomor Pesanan</th>
+						<th class="">Total Menu</th>
+						<th class="">Tanggal Pesan</th>
+						<th class="">Status Menu</th>
 
 						<th class="datatable-nosort">Action</th>
 					</tr>
@@ -31,6 +32,7 @@
 						<td class="table-plus">{{$order->id}}</td>
                         <td>{{count($order->pesananItems)}}</td>
                         <td>{{$order->tglpesan}}</td>
+                        <td>{{$order->status_pesanan}}</td>
 						<td>
 							<div class="dropdown">
 								<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -85,7 +87,6 @@
                 success: function(data){
                     $("#results").html(data.html);
                     $("#results").removeClass('d-none');
-                    console.log(data.html);
                 }
             });
         }

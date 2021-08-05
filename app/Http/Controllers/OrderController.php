@@ -88,6 +88,16 @@ class OrderController extends Controller
         return response()->json(['html' => $returnHTML]);
     }
 
+    public function changeProses(Request $request, $id)
+    {
+        $Pesanan = Pesanan::find($id);
+        $status = $request->status;
+        $Pesanan->status_pesanan = $status;
+        $Pesanan->save();
+
+        return redirect()->back();
+    }
+
     public function storeReceipt($idpesanan)
     {
         $Pesanan = Pesanan::find($idpesanan);

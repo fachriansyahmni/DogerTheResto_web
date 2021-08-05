@@ -34,6 +34,7 @@ Route::get('/test', function () {
 });
 
 Route::get("/detail-pesanan/{idpesanan}", 'OrderController@ajaxGetDetailPesanan');
+Route::post("/detail-pesanan/{idpesanan}/process", 'OrderController@changeProses')->name("change-process");
 
 // for admin
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin', 'as' => 'admin-'], function () {
