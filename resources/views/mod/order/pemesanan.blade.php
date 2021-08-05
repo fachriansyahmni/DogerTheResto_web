@@ -10,15 +10,9 @@
                     <div class="">
                         Kategori : <br>
                         @foreach (App\MenuKategori::get() as $index => $mk)
-                            <input id="mk_{{$index}}" type="checkbox">
+                            <input id="mk_{{$index}}" class="bykategori" value="{{$mk->nama_kategori}}" type="checkbox">
                             <label for="mk_{{$index}}">{{$mk->nama_kategori}}</label>
                         @endforeach
-                    </div>
-    
-                    <div class="">
-                        Stok : <br>
-                        <input id="filter_tersedia" type="checkbox">
-                        <label for="filter_tersedia">tersedia</label>
                     </div>
                 </div>
             </div>
@@ -37,7 +31,7 @@
         @foreach ($AllMenu as $Menu)
         <div class="col-md-4 col-sm-4 mb-30 menu-list-item">
             <div class="card card-box detail-menu" id="dmenuid{{$Menu->id}}">
-                <div class="">
+                <div class="c-head">
                     @isset($Menu->menuKategori)
                     <div class="badge badge-info position-absolute menu_kategori" style="top: 10px;left: 10px;">{{$Menu->menuKategori->nama_kategori}}</div>
                     @endisset
@@ -148,16 +142,42 @@
 
     var input = $('#filter_menu');
     input.on("keyup",function(){
-        filterMenu();
+        filterMenu(input);
     });
 
     var form = $('#fpesanan');
 
-    function filterMenu(){
+    function filterMenu(z,exist = false){
         var keyword, filter, ul, li, a, i, txtValue;
-        keyword = input.val().toLowerCase();
+        keyword = z.val().toLowerCase();
         ul = $("#menu-list");
+        if(exist){
+        liChild = $(".menu-list-item:not(.d-none) .detail-menu .card-body .nama_menu");
+        }else{
         liChild = $(".menu-list-item .detail-menu .card-body .nama_menu");
+        }
+        li = $(".menu-list-item");
+            // console.log(li);
+
+        for (i = 0; i < liChild.length; i++) {
+            a = liChild[i].innerText;
+            if (a.toLowerCase().indexOf(keyword) > -1) {
+                li[i].classList.remove("d-none")
+            } else {
+                li[i].classList.add("d-none")
+            }
+        }
+    }
+    function filterMenuByKategori(z,exist = false){
+        var keyword, filter, ul, li, a, i, txtValue;
+        keyword = z.val().toLowerCase();
+        ul = $("#menu-list");
+        if(exist){
+        liChild = $(".menu-list-item:not(.d-none) .detail-menu .c-head .menu_kategori");
+        }else{
+        liChild = $(".menu-list-item .detail-menu .c-head .menu_kategori");
+
+        }
         li = $(".menu-list-item");
             // console.log(li);
 
@@ -210,11 +230,12 @@
         $('#fpesanan').submit();
     }
 
-    $("#filter_tersedia").change(function() {
-    if($("#filter_tersedia").prop('checked') == true){
-        //do something
-        alert("a");
-    }
+    $(".bykategori").change(function() {
+        if($(this).prop('checked') == true){
+            filterMenuByKategori($(this));
+        }else{
+            filterMenuByKategori(input);
+        }
     });
 </script>
 @endpush
