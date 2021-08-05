@@ -186,37 +186,63 @@
                             <td class="table-plus">{{ $Order->total_harga }}</td>
                             <td class="table-plus">{{ $Order->status_nota }}</td>
                             <td>
-                                <a href="" class="btn btn-primary" data-toggle="modal" data-target="Medium-modal">View</a>
+                                <a href="" class="btn btn-primary" data-toggle="modal" data-target="#detail-{{ $Order->id }}">View</a>
                             </td>
                         </tr>
 
-                        {{-- modal view --}}
-                        {{-- <div class="modal fade show" id="Medium-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: block; padding-right: 17px;" aria-modal="true">
-                            <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal fade bs-example-modal-lg" id="detail-{{ $Order->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title" id="myLargeModalLabel">Detail Pemesanan</h4>
+                                        <h4 class="modal-title" id="myLargeModalLabel">Detail List Pesanan</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                     </div>
-                                    <div class="modal-body">
-                                        <tr>
-                                            <th>Nomor Pesanan</th>
-                                            <th>Total Harga</th>
-                                            <th>Tanggal Pemesanan</th>
-                                            <th>Tanggal Pembayaran</th>
-                                            <th>Status Nota</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ $Order->nomor_pesanan }}</td>
-                                            <td>{{ $Order->total_harga }}</td>
-                                            <td>{{ $Order->tgl_pesan }}</td>
-                                            <td>{{ $Order->tgl_bayar }}</td>
-                                            <td>{{ $Order->status }}</td>
-                                        </tr>
-                                    </div>
+                                    
+                                        <div class="modal-body">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12 col-md-10">
+                                                            <p style="text-align:justify;">
+                                                                <b>Nomor Pesanan</b>
+                                                                : 
+                                                                {{$Order->nomor_pesanan}}
+                                                                
+                                                                <br>
+    
+                                                                <b>Total Harga</b>
+                                                                : 
+                                                                {{$Order->total_harga}}
+                                                                
+                                                                <br>
+    
+                                                                <b>Tanggal pemesanan</b>
+                                                                : 
+                                                                {{$Order->tgl_pesan}}
+                                                                
+                                                                <br>
+    
+                                                                <b>Tanggal Bayar</b>
+                                                                : 
+                                                                {{$Order->tgl_bayar}}
+                                                                
+                                                                <br>
+                                                                <b>Status</b>
+                                                                : 
+                                                                {{$Order->status_nota}}
+                                                                
+                                                                <br>
+                                                                
+                                                                
+                                                            </p>	
+                                                            </p>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
