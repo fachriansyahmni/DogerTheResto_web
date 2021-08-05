@@ -60,7 +60,7 @@
                                     @csrf
                                     <div class="modal-body">
                                             <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Role</label>
+                                                <label class="col-sm-12 col-md-2 col-form-label">Status Menu</label>
                                                 <div class="col-sm-12 col-md-10">
                                                     <select name="menu_status" class="form-control">
                                                     	@foreach (App\Menu::LISTMENUSTATUS as $menu_status)
@@ -73,6 +73,55 @@
                                     <div class="modal-footer">
                                         {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
                                         <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade bs-example-modal-lg" id="detail-{{ $Menu->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myLargeModalLabel">Detail Menu</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <form action="{{route('chef-edit-status-menu',$Menu->id)}}" method="POST">
+                                    @method("POST")
+                                    @csrf
+                                    <div class="modal-body">
+                                            <div class="form-group row">
+                                                <div class="col-sm-12 col-md-10">
+                                                    	<p style="text-align:justify;"><img src="{{asset($Menu->gambar)}}" style="float:left; margin:0 9px 3px 0; height:192px; width:270px;" />
+                                                    		
+
+                                                    		<b>Nama Makanan</b>
+                                                    		: 
+                                                    		{{$Menu->nama}}
+                                                    		
+                                                    		<br>
+                                                    		<b>Sisa Stok</b> 
+                                                    		: 
+                                                    		{{$Menu->stok}}
+                                                    		
+                                                    		<br>
+                                                    		<b>Harga Makanan</b> 
+                                                    		: 
+                                                    		Rp.{{$Menu->harga}}
+                                                    		
+                                                    		<br>
+                                                    		<b>Status Makanan</b>
+                                                    		: 
+                                                    		{{$Menu->menu_stat}}
+                                                    		
+                                                    		
+														</p>	
+                                                    	</p>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </form>
                             </div>

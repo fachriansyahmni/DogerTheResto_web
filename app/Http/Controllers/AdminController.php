@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ItemNotaPesanan;
 use App\Menu;
 use App\NotaPesanan;
+use App\PesananItem;
 use App\User;
 use App\Role;
 use Illuminate\Support\Facades\DB;
@@ -29,8 +30,10 @@ class AdminController extends Controller
             $pendapatanMonth += $ReceiptByMonth->total_harga;
         }
 
-        $ItemNota = ItemNotaPesanan::whereRaw('MONTH(created_at) = MONTH(now()) AND YEAR(created_at) = YEAR(NOW())')->get(["qty"]);
-        $ItemNota2 = ItemNotaPesanan::whereRaw('MONTH(created_at) = MONTH(now()- INTERVAL 1 MONTH)')->get(["qty"]);
+        // $bb = PesananItem::select(['menu_id', DB::raw('SUM(qty) as total')])->whereRaw('MONTH(created_at) = MONTH(now()) AND YEAR(created_at) = YEAR(NOW())')->groupBy('menu_id')->get();
+        // dd($bb);
+        $ItemNota = ItemNotaPesanan::whereRaw('MONTH(created_at) = MONTH(now()) AND YEAR(created_at) = YEAR(NOW())')->get();
+        $ItemNota2 = ItemNotaPesanan::whereRaw('MONTH(created_at) = MONTH(now()- INTERVAL 1 MONTH)')->get();
         $TotalMenuTerjual = 0;
         $TotalMenuTerjual2 = 0;
         foreach ($ItemNota as $totMenu) {
@@ -47,18 +50,22 @@ class AdminController extends Controller
         $compacts = ['pendapatanMonth', 'TotalMenuTerjual', 'presentaseMenu'];
         $ListMenu = [];
         $akhir = cal_days_in_month(CAL_GREGORIAN, date("m"), date("Y"));
-        // $thedate = date("Y-m-d",strtotime());
-        for ($i = 0; $i < $akhir; $i++) {
-            $thedate = date("Y-m-" . ($i + 1));
+        $thedate = date("Y-m-d", time());
+        // for ($i = 0; $i < $akhir; $i++) {
+        //     $thedate = date("Y-m-" . ($i + 1));
 
-            $totMenu = 0;
-            $im = ItemNotaPesanan::whereDate('created_at', $thedate)->get();
-            // $zzz[$i] = ;
-            foreach ($im as $bbb) {
-                $totMenu += $bbb->qty;
-            }
-            $ListMenu[$i] = ["tgl" => ($i + 1), "total_menu" => $totMenu];
+        $totMenu = 0;
+        $im = PesananItem::select(['menu_id', DB::raw('SUM(qty) as total')])->whereDate('created_at', $thedate)->groupBy('menu_id')->get();
+        // $zzz[$i] = ;
+        // dd($im);
+        $ListMenu = [];
+        foreach ($im as $index => $bbb) {
+            $ListMenu[$index] = ["tgl" => $thedate, "nama_menu" => $bbb->dMenu->nama, "qty" => $bbb->total];
         }
+        // $ListMenu[$i] = ["tgl" => ($i + 1), "total_menu" => $totMenu];
+        // $ListMenu[$i] = $im;
+        // }
+        // dd($ListMenu);
         // dd($ListMenu);
 
         // foreach (Menu::where("visible", "1")->get() as $index => $menu) {
