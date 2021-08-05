@@ -19,6 +19,7 @@
 					<tr>
 						<th class="">Nomor Pesanan</th>
 						<th class="">Total Menu</th>
+						<th class="">Nomor Meja</th>
 						<th class="">Tanggal Pesan</th>
 						<th class="">Status Menu</th>
 
@@ -31,6 +32,7 @@
 					<tr class="list_pesanan" data-pid="{{$order->id}}">
 						<td class="table-plus">{{$order->id}}</td>
                         <td>{{count($order->pesananItems)}}</td>
+                        <td>{{$order->nomor_meja}}</td>
                         <td>{{$order->tglpesan}}</td>
                         <td>{{$order->status_pesanan}}</td>
 						<td>
@@ -39,7 +41,7 @@
 									<i class="dw dw-more"></i>
 								</a>
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-								<a class="dropdown-item" href="#" onclick="getDetailPesanan(pesananid)"><i class="dw dw-eye"></i> detail</a>
+								<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> detail</a>
 								</div>
 							</div>
 						</td>
