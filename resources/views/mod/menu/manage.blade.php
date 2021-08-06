@@ -68,7 +68,7 @@
 					<p class="mb-30">Halaman manajemen menu</p>
 				</div>
 				<div class="pull-right">
-					<a href="#" data-toggle="modal" data-target="#addMenu">Tambah Menu</a>
+					<a href="#" data-toggle="modal" data-target="#addMenu" class="btn btn-primary">Tambah Menu</a>
 				</div>
 			</div>
 
