@@ -24,7 +24,7 @@ class MenuController extends Controller
     {
         $request->validate([
             "nama_menu" => 'required|string',
-            "harga" => 'required|integer',
+            "harga_menu" => 'required|integer',
             "stok" => 'required|integer',
             "menu_status" => 'required',
         ]);
@@ -55,11 +55,11 @@ class MenuController extends Controller
     public function editMenu(Request $request, $idmenu)
     {
         $request->validate([
-            "nama" => 'required',
-            "harga" => 'required|integer',
+            "nama_menu" => 'required',
+            "harga_menu" => 'required|integer',
             "stok" => 'required|integer',
             "menu_status" => 'required',
-            "menu_kategori_id" => 'required',
+            "menu_kategori" => 'required',
         ]);
         $Menu = Menu::find($idmenu);
         if ($request->hasFile('gambar')) {
