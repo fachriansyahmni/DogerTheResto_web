@@ -35,13 +35,13 @@ class TableController extends Controller
         $meja->nomor_meja = $request->nomorMeja;
         $meja->status = $request->status;
         $meja->save();
-        return redirect()->route('manage.table.save');
+        return redirect()->route('manage.table.save')->with("success", "Meja Berhasil Diubah");
     }
 
     public function delete($id)
     {
         $meja = Meja::find($id);
         $meja->delete();
-        return redirect()->route('manage.table.save');
+        return redirect()->route('manage.table.save')->with("success", "Meja Berhasil Dihapus");
     }
 }
