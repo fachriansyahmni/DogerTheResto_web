@@ -49,15 +49,62 @@
                             @endif
                         </td>
 						<td>
-							{{-- <div class="dropdown">
-								<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-									<i class="dw dw-more"></i>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-								</div>
-							</div> --}}
+							<a href="" class="btn btn-primary" data-toggle="modal" data-target="#detail-{{ $Receipt->id }}">View</a>
 						</td>
 					</tr>
+                    <div class="modal fade bs-example-modal-lg" id="detail-{{ $Receipt->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myLargeModalLabel">Detail Pesanan</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                
+                                    <div class="modal-body">
+                                            <div class="form-group row">
+                                                <div class="col-sm-12 col-md-10">
+                                                        <p style="text-align:justify;">
+                                                            <b>Nomor Pesanan</b>
+                                                            : 
+                                                            {{$Receipt->nomor_pesanan}}
+                                                            
+                                                            <br>
+
+                                                            <b>Total Harga</b>
+                                                            : 
+                                                            {{$Receipt->total_harga}}
+                                                            
+                                                            <br>
+
+                                                            <b>Tanggal pemesanan</b>
+                                                            : 
+                                                            {{$Receipt->tgl_pesan}}
+                                                            
+                                                            <br>
+
+                                                            <b>Tanggal Bayar</b>
+                                                            : 
+                                                            {{$Receipt->tgl_bayar}}
+                                                            
+                                                            <br>
+                                                            <b>Status</b>
+                                                            : 
+                                                            {{$Receipt->status_nota}}
+                                                            
+                                                            <br>
+                                                            
+                                                            
+                                                        </p>	
+                                                        </p>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
 
 				</tbody>
