@@ -10,7 +10,7 @@
 					<p class="mb-30">Halaman manajemen kategori</p>
 				</div>
 				<div class="pull-right">
-					<a href="#" data-toggle="modal" data-target="#addMenuKategori">Tambah Kategori</a>
+					<a href="#" data-toggle="modal" data-target="#addMenuKategori" class="btn btn-primary">Tambah Kategori</a>
 				</div>
 			</div>
 
