@@ -64,6 +64,13 @@
 			</div>
 		</div>
 		@endif
+		@if(session()->has('success'))
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="alert alert-success">
+				{{ session()->get('success') }}
+			</div>
+		</div>
+		@endif
 		<div class="pd-ltr-20 xs-pd-20-10">
 			@yield('main-content')
 		</div>

@@ -23,7 +23,7 @@ class TableController extends Controller
         $meja->nomor_meja = $request->nomorMeja;
         $meja->status = $request->status;
         $meja->save();
-        return redirect()->route('manage.table.save');
+        return redirect()->route('manage.table.save')->with("success", "Meja Dengan Nomor " . $meja->nomor_meja . " Berhasil Ditambah");
     }
 
     public function edit(Request $request, $id)
