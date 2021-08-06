@@ -93,6 +93,12 @@ class AdminController extends Controller
 
     public function save(Request $request)
     {
+        $request->validate([
+            "username" => 'required',
+            "name" => 'required',
+            "password" => 'required',
+            "role" => 'required',
+        ]);
         $user =  User::create([
             'username' => $request['username'],
             'name' => $request['name'],
@@ -106,6 +112,9 @@ class AdminController extends Controller
 
     public function delete(Request $request)
     {
+        $request->validate([
+            "id" => 'required',
+        ]);
         $dataRole = DB::table('model_has_roles')->where('model_id', '=', $request->id)->delete();
         $user = User::find($request->id)->delete();
         return redirect()->route('admin-registration');
@@ -125,6 +134,9 @@ class AdminController extends Controller
 
     public function roleSave(Request $request)
     {
+        $request->validate([
+            "name" => 'required',
+        ]);
         $role = new Role;
         $role->name = $request->name;
         $role->guard_name = "web";
@@ -134,6 +146,9 @@ class AdminController extends Controller
 
     public function roleEdit(Request $request, $id)
     {
+        $request->validate([
+            "name" => 'required',
+        ]);
         $role = Role::find($id);
         $role->name = $request->name;
         $role->guard_name = "web";

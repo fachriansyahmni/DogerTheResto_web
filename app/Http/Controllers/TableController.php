@@ -16,6 +16,9 @@ class TableController extends Controller
 
     public function save(Request $request)
     {
+        $request->validate([
+            "nomorMeja" => 'required',
+        ]);
         $meja = new Meja;
         $meja->nomor_meja = $request->nomorMeja;
         $meja->status = $request->status;
@@ -25,6 +28,9 @@ class TableController extends Controller
 
     public function edit(Request $request, $id)
     {
+        $request->validate([
+            "nomorMeja" => 'required',
+        ]);
         $meja = Meja::find($id);
         $meja->nomor_meja = $request->nomorMeja;
         $meja->status = $request->status;

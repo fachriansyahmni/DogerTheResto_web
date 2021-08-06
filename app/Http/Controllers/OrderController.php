@@ -35,6 +35,11 @@ class OrderController extends Controller
 
     public function konfirmasiOrder(Request $request)
     {
+        $request->validate([
+            "menuid" => 'required',
+            "qty" => 'required',
+            "noMeja" => 'required',
+        ]);
         $ListMenuId = $request->menuid;
         $MenuQTY = $request->qty;
         $DataMeja = Meja::find($request->noMeja);

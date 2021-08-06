@@ -54,6 +54,13 @@ class MenuController extends Controller
 
     public function editMenu(Request $request, $idmenu)
     {
+        $request->validate([
+            "nama" => 'required',
+            "harga" => 'required|integer',
+            "stok" => 'required|integer',
+            "menu_status" => 'required',
+            "menu_kategori_id" => 'required',
+        ]);
         $Menu = Menu::find($idmenu);
         if ($request->hasFile('gambar')) {
             $gambarMenu = time() . '.' . $request->gambar->extension();
