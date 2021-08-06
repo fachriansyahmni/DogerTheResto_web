@@ -80,7 +80,7 @@ class AdminController extends Controller
         $role = DB::table('model_has_roles')
             ->where('model_id', $request->id)
             ->update(['role_id' => $request->role]);
-        return redirect()->route('admin-registration');
+        return redirect()->route('admin-registration')->with("success", "Pengguna berhasil diubah");
     }
 
     public function reset(Request $request)
@@ -88,7 +88,7 @@ class AdminController extends Controller
         $user = User::find($request->id);
         $user->password = Hash::make($request->password);
         $user->save();
-        return redirect()->route('admin-registration');
+        return redirect()->route('admin-registration')->with("success", "Kata Sandi Berhasil Diubah");
     }
 
     public function save(Request $request)
@@ -107,7 +107,7 @@ class AdminController extends Controller
         ]);
 
         $user->assignRole($request['role']);
-        return redirect()->route('admin-registration');
+        return redirect()->route('admin-registration')->with("success", "Pengguna Berhasil Ditambah");
     }
 
     public function delete(Request $request)
@@ -117,7 +117,7 @@ class AdminController extends Controller
         ]);
         $dataRole = DB::table('model_has_roles')->where('model_id', '=', $request->id)->delete();
         $user = User::find($request->id)->delete();
-        return redirect()->route('admin-registration');
+        return redirect()->route('admin-registration')->with("success", "Pengguna Berhasil Dihapus");
     }
 
     public function manageUser()
@@ -141,7 +141,7 @@ class AdminController extends Controller
         $role->name = $request->name;
         $role->guard_name = "web";
         $role->save();
-        return redirect()->route('admin-role-save');
+        return redirect()->route('admin-role-save')->with("success", "Role Berhasil Ditambah");
     }
 
     public function roleEdit(Request $request, $id)
@@ -153,7 +153,7 @@ class AdminController extends Controller
         $role->name = $request->name;
         $role->guard_name = "web";
         $role->save();
-        return redirect()->route('admin-role-save');
+        return redirect()->route('admin-role-save')->with("success", "Role Berhasil diubah");
     }
 
     public function roleDelete($id)
@@ -161,6 +161,6 @@ class AdminController extends Controller
         // dd($id);
         $role = Role::find($id);
         $role->delete();
-        return redirect()->route('admin-role-save');
+        return redirect()->route('admin-role-save')->with("success", "Role Berhasil Dihapus");
     }
 }
