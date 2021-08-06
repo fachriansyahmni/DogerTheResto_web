@@ -151,24 +151,38 @@ class OrderController extends Controller
     public function filter(Request $request)
     {
         // dd($request);
+
         if ($request->btn == "day") {
             $kondisi = $request->btn;
+            $request->validate([
+                "date" => 'required',
+            ]);
             $param1 = $request->date;
             // dd($this->param1);
             $AllOrders = NotaPesanan::whereDate("tgl_pesan", $request->date)->get();
             $compacts = ['AllOrders', 'kondisi', 'param1'];
         } else if ($request->btn == "month") {
+            $request->validate([
+                "date" => 'required',
+            ]);
             $kondisi = $request->btn;
             $param1 = $request->date;
             $teks = explode("-", $request->date);
             $AllOrders = NotaPesanan::whereMonth("tgl_pesan", $teks[1])->get();
             $compacts = ['AllOrders', 'kondisi', 'param1'];
         } else if ($request->btn == "year") {
+            $request->validate([
+                "date" => 'required',
+            ]);
             $kondisi = $request->btn;
             $param1 = $request->date;
             $AllOrders = NotaPesanan::whereYear("tgl_pesan", $request->date)->get();
             $compacts = ['AllOrders', 'kondisi', 'param1'];
         } else if ($request->btn == "custom") {
+            $request->validate([
+                "date1" => 'required',
+                "date2" => 'required',
+            ]);
             $kondisi = $request->btn;
             $param1 = $request->date1;
             $param2 = $request->date2;
