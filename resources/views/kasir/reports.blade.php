@@ -119,7 +119,7 @@
                         <p class="mb-30">Halaman daftar pesanan</p>
                     </div>
                     <div class="pull-right">
-                        <a href="#" onclick="submitForm()">Export</a> {{-- data-toggle="modal" data-target="#export" --}}
+                        <a href="#" class="btn btn-primary" onclick="submitForm()">Export</a> {{-- data-toggle="modal" data-target="#export" --}}
                         @isset($kondisi)
                             @switch($kondisi)
                                 @case("day")

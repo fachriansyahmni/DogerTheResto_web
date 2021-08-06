@@ -85,7 +85,7 @@
                 </table>
                 <div class="mt-2 text-left">
                     <button class="btn btn-success" onclick="submitPesanan()" type="button">Konfirmasi Pesanan</button>
-                    <button class="btn btn-danger" type="button">Hapus Semua</button>
+                    <button class="btn btn-danger" type="button" onclick="deletePesanan()">Hapus Semua</button>
                 </div>
             </div>
         </div>
@@ -134,10 +134,14 @@
         if (qty === null) {
                 return; 
         }
-        if(qty == 0 || qty == NaN){
+        if(qty <= 0 || qty == NaN){
             qty = 1;
         }
-        updateNota(menuId,qty);
+        if($("tr[class=notemenu-"+menuId+"]").length > 0){
+            editNota(menuId,qty)
+        }else{
+            addtoNota(menuId,qty);
+        }
     });
 
     var input = $('#filter_menu');
@@ -168,6 +172,7 @@
             }
         }
     }
+
     function filterMenuByKategori(z,exist = false){
         var keyword, filter, ul, li, a, i, txtValue;
         keyword = z.val().toLowerCase();
@@ -191,7 +196,25 @@
         }
     }
 
-    function updateNota(menuid,qty){
+    function editNota(menuid,qty){
+        var totalHarga = 0;
+        var trmenu = $("tr[class=notemenu-"+menuid+"]");
+        var trqty = trmenu.find('td')[2];
+        var trthrg = trmenu.find('td')[3];
+        var menudata = $("#dmenuid"+menuid);
+        var hargasatuan = menudata.find("b[class=hsm]").text();
+        trqty.innerText = parseInt(trqty.innerText) + parseInt(qty);
+        trthrg.innerText = parseInt(trqty.innerText * hargasatuan);
+        $('.fmid-notemenu-'+menuid).remove();
+        var appinput = '';
+            appinput += '<div class="fmid-notemenu-'+menuid+'">';
+            appinput += '<input type="text" name="menuid[]" value="'+menuid+'">';
+            appinput += '<input type="text" name="qty[]" value="'+qty+'">';
+            appinput += '</div>';
+            form.append(appinput);
+    }
+
+    function addtoNota(menuid,qty){
         var totalHarga = 0;
         var tblnota = [];
         var tbl_pesan = $('#tbl_pesanan tbody');
@@ -213,17 +236,24 @@
                                         +'</tr>';
             $('#tbl_pesanan tbody').append(addtotable);
             var appinput = '';
-            appinput += '<div class="fmid-notemenu-'+menuid+'">';
+            appinput += '<div class="fmid-notemenu-'+menuid+' itemfm">';
             appinput += '<input type="text" name="menuid[]" value="'+menuid+'">';
             appinput += '<input type="text" name="qty[]" value="'+qty+'">';
             appinput += '</div>';
             form.append(appinput);
+        }else{
+            editNota(menuid,qty);
         }
     }
 
     function deleteRow(row){
         $('div[class="fmid-'+row+'"]').remove();
         $("."+row).remove();
+    }
+
+    function deletePesanan(){
+        $('.itemfm').remove();
+        $('#tbl_pesanan tbody').empty();
     }
 
     function submitPesanan(){

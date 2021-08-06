@@ -34,13 +34,13 @@ class MenuKategoriController extends MenuController
         $Kategori->nama_kategori = $request->nama_kategori;
         $Kategori->save();
 
-        return redirect()->back();
+        return redirect()->back()->with("success", "Kategori Berhasil diubah");
     }
 
     public function deleteKategori($idKategori)
     {
         $Kategori = MenuKategori::find($idKategori);
         $Kategori->delete();
-        return redirect()->back();
+        return redirect()->back()->with("success", "Menu Kategori Berhasil Ditambah");
     }
 }
