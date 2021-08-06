@@ -22,7 +22,12 @@ class MenuController extends Controller
 
     public function storeMenu(Request $request)
     {
-
+        $request->validate([
+            "nama_menu" => 'required|string',
+            "harga" => 'required|integer',
+            "stok" => 'required|integer',
+            "menu_status" => 'required',
+        ]);
         if ($request->hasFile('gambar')) {
             $gambarMenu = time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('img/menu-images'), $gambarMenu);

@@ -53,6 +53,17 @@
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
+		@if ($errors->any())
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="alert alert-danger" role="alert">
+				<ul>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+				</ul>
+			</div>
+		</div>
+		@endif
 		<div class="pd-ltr-20 xs-pd-20-10">
 			@yield('main-content')
 		</div>
